@@ -1,0 +1,823 @@
+INFO     planner time limit: None
+INFO     planner memory limit: None
+
+INFO     Running translator.
+INFO     translator stdin: None
+INFO     translator time limit: None
+INFO     translator memory limit: None
+INFO     translator command line string: /usr/bin/python3 /opt/scorpion/builds/release/bin/translate/translate.py /mnt/benchmarks/rovers/domain.pddl /mnt/benchmarks/rovers/tmp/rovers_p55_c4.pddl --sas-file /mnt/benchmarks/rovers/tmp/rovers_p55_c4.sas
+Parsing...
+Parsing: [0.000s CPU, 0.002s wall-clock]
+Normalizing task... [0.000s CPU, 0.000s wall-clock]
+Instantiating...
+Generating Datalog program... [0.000s CPU, 0.000s wall-clock]
+Normalizing Datalog program...
+Normalizing Datalog program: [0.000s CPU, 0.002s wall-clock]
+Preparing model... [0.000s CPU, 0.001s wall-clock]
+Generated 77 rules.
+Computing model... [0.010s CPU, 0.006s wall-clock]
+550 relevant atoms
+895 auxiliary atoms
+1445 final queue length
+1630 total queue pushes
+Completing instantiation... [0.000s CPU, 0.004s wall-clock]
+Instantiating: [0.010s CPU, 0.013s wall-clock]
+Computing fact groups...
+Finding invariants...
+31 initial candidates
+Finding invariants: [0.010s CPU, 0.002s wall-clock]
+Checking invariant weight... [0.000s CPU, 0.000s wall-clock]
+Instantiating groups... [0.000s CPU, 0.000s wall-clock]
+Collecting mutex groups... [0.000s CPU, 0.000s wall-clock]
+Choosing groups...
+48 uncovered facts
+Choosing groups: [0.000s CPU, 0.000s wall-clock]
+Building translation key... [0.000s CPU, 0.000s wall-clock]
+Computing fact groups: [0.010s CPU, 0.003s wall-clock]
+Building STRIPS to SAS dictionary... [0.000s CPU, 0.000s wall-clock]
+Building dictionary for full mutex groups... [0.000s CPU, 0.000s wall-clock]
+Building mutex information...
+Building mutex information: [0.000s CPU, 0.000s wall-clock]
+Translating task...
+Processing axioms...
+Simplifying axioms... [0.000s CPU, 0.000s wall-clock]
+Translator axioms removed by simplifying: 0
+Computing negative axioms... [0.000s CPU, 0.000s wall-clock]
+Processing axioms: [0.000s CPU, 0.000s wall-clock]
+Translating task: [0.000s CPU, 0.004s wall-clock]
+132 effect conditions simplified
+0 implied preconditions added
+Detecting unreachable propositions...
+0 operators removed
+0 axioms removed
+15 propositions removed
+Detecting unreachable propositions: [0.000s CPU, 0.002s wall-clock]
+Reordering and filtering variables...
+20 of 63 variables necessary.
+0 of 15 mutex groups necessary.
+83 of 254 operators necessary.
+0 of 0 axiom rules necessary.
+Reordering and filtering variables: [0.000s CPU, 0.001s wall-clock]
+Translator variables: 20
+Translator derived variables: 0
+Translator facts: 73
+Translator goal facts: 5
+Translator mutex groups: 0
+Translator total mutex groups size: 0
+Translator operators: 83
+Translator axioms: 0
+Translator task size: 443
+Translator peak memory: 31940 KB
+Writing output... [0.000s CPU, 0.001s wall-clock]
+Done! [0.020s CPU, 0.027s wall-clock]
+
+INFO     Run task transformation (preprocess-h2).
+INFO     transform-task stdin: /mnt/benchmarks/rovers/tmp/rovers_p55_c4.sas
+INFO     transform-task time limit: None
+INFO     transform-task memory limit: None
+INFO     transform-task command line string: /opt/scorpion/builds/release/bin/preprocess-h2 < /mnt/benchmarks/rovers/tmp/rovers_p55_c4.sas
+Building causal graph...
+The causal graph is not acyclic.
+20 variables of 20 necessary
+0 of 0 mutex groups necessary.
+83 of 83 operators necessary.
+0 of 0 axiom rules necessary.
+Initializing mutex computation...
+Mutex computation initialized with 73 fluents.
+iteration for mutex detection and operator pruning
+Initialize m_index fw
+Initialized mvalues forward: reached=400, notReached=4679, spurious=250
+Initialize m_ops fw
+Computing mutexes...
+Mutex computation finished with reached=5069, notReached=10, spurious=250
+0 operators are spurious because were not triggered
+H^2 mutexes added fw: 10, unreachable: 0
+0 of 83 operators detected as spurious
+iteration for mutex detection and operator pruning
+Initialize m_index bw
+Init values regression
+Initialized mvalues backward: reached=3759, notReached=1310, spurious=260
+Initialize m_ops bw
+Computing mutexes...
+Mutex computation finished with reached=5069, notReached=0, spurious=260
+0 operators are spurious because were not triggered
+H^2 mutexes added bw: 0, unreachable: 0
+0 of 83 operators detected as spurious
+Total mutex and disambiguation time: 0.001101 iterations: 2
+Total mutexes found forward: 10
+Total mutexes found backward: 0
+5 of 5 mutex groups necessary.
+83 of 83 operators necessary.
+0 of 0 axiom rules necessary.
+Change id of operators: 83
+Change id of mutexes
+Change id of goals
+Change id of initial state
+Remove unreachable facts from variables: 20
+5 of 5 mutex groups necessary.
+83 of 83 operators necessary.
+0 of 0 axiom rules necessary.
+Updating causal graph and pruning unnecessary facts
+20 variables of 20 of 20 necessary
+The causal graph is not acyclic.
+20 variables of 20 necessary
+5 of 5 mutex groups necessary.
+83 of 83 operators necessary.
+0 of 0 axiom rules necessary.
+Preprocessor variables: 20
+Preprocessor facts: 73
+Preprocessor derived variables: 0
+Preprocessor operators: 83
+Preprocessor mutex groups: 5
+Preprocessor task size: 453
+Writing output...
+done
+translate exit code: 0
+
+INFO     Running search (release).
+INFO     search stdin: /mnt/benchmarks/rovers/tmp/rovers_p55_c4.sas
+INFO     search time limit: 3600s
+INFO     search memory limit: 8192 MB
+INFO     search command line string: /opt/scorpion/builds/release/bin/downward --search 'astar(scp_online([projections(sys_scp(max_time=100, max_time_per_restart=10)), cartesian()], saturator=perimstar, max_time=1000, interval=10K, orders=greedy_orders()),pruning=limited_pruning(pruning=atom_centric_stubborn_sets(), min_required_pruning_ratio=0.2))' --internal-plan-file /mnt/benchmarks/rovers/tmp/rovers_p55_c4.plan < /mnt/benchmarks/rovers/tmp/rovers_p55_c4.sas
+[t=0.000655s, 10796 KB] reading input...
+[t=0.000655s, 10796 KB] done reading input!
+[t=0.000655s, 11192 KB] Compute patterns
+[t=0.000655s, 11192 KB] Generating patterns using: sys-SCP pattern collection generator
+[t=0.000655s, 11192 KB] Generate patterns for size 1
+[t=0.000655s, 11192 KB] building causal graph...done! [t=0.000000s]
+[t=0.000655s, 11192 KB] Found 5 SGA patterns.
+[t=0.000655s, 11192 KB] Found 5 interesting patterns.
+[t=0.000655s, 11192 KB] Store 5 patterns of size 1
+[t=0.000655s, 11192 KB] Finished storing patterns of size 1
+[t=0.000655s, 11192 KB] Add pattern [19]
+[t=0.000655s, 11192 KB] Add pattern [18]
+[t=0.000655s, 11192 KB] Add pattern [17]
+[t=0.000655s, 11192 KB] Add pattern [16]
+[t=0.000655s, 11192 KB] Add pattern [15]
+[t=0.000655s, 11192 KB] Generate patterns for size 2
+[t=0.000655s, 11192 KB] Found 25 SGA patterns.
+[t=0.000655s, 11192 KB] Found 25 interesting patterns.
+[t=0.000655s, 11192 KB] Store 20 patterns of size 2
+[t=0.000655s, 11192 KB] Finished storing patterns of size 2
+[t=0.000655s, 11192 KB] Add pattern [12, 15]
+[t=0.000655s, 11192 KB] Add pattern [9, 16]
+[t=0.000655s, 11192 KB] Add pattern [8, 17]
+[t=0.000655s, 11192 KB] Add pattern [7, 18]
+[t=0.000655s, 11192 KB] Add pattern [4, 19]
+[t=0.000655s, 11192 KB] Generate patterns for size 3
+[t=0.000655s, 11192 KB] Found 70 SGA patterns.
+[t=0.000655s, 11192 KB] Found 100 interesting patterns.
+[t=0.000655s, 11192 KB] Store 75 patterns of size 3
+[t=0.000655s, 11192 KB] Finished storing patterns of size 3
+[t=0.003670s, 11192 KB] Add pattern [2, 12, 15]
+[t=0.003670s, 11192 KB] Add pattern [1, 12, 15]
+[t=0.003670s, 11192 KB] Add pattern [0, 12, 15]
+[t=0.003670s, 11192 KB] Generate patterns for size 4
+[t=0.003670s, 11192 KB] Found 270 SGA patterns.
+[t=0.003670s, 11192 KB] Found 420 interesting patterns.
+[t=0.003670s, 11192 KB] Store 320 patterns of size 4
+[t=0.003670s, 11192 KB] Finished storing patterns of size 4
+[t=0.011672s, 11192 KB] Generate patterns for size 5
+[t=0.011672s, 11476 KB] Found 1270 SGA patterns.
+[t=0.011672s, 11608 KB] Found 1865 interesting patterns.
+[t=0.011672s, 11608 KB] Store 1445 patterns of size 5
+[t=0.011672s, 11608 KB] Finished storing patterns of size 5
+[t=0.011672s, 11608 KB] Add pattern [10, 11, 12, 14, 15]
+[t=0.071648s, 11608 KB] Add pattern [0, 1, 2, 12, 15]
+[t=0.071648s, 11608 KB] Add pattern [0, 1, 2, 9, 16]
+[t=0.071648s, 11608 KB] Add pattern [0, 1, 2, 7, 18]
+[t=0.071648s, 11608 KB] Generate patterns for size 6
+[t=0.075652s, 12872 KB] Found 4625 SGA patterns.
+[t=0.083642s, 13376 KB] Found 7758 interesting patterns.
+[t=0.083642s, 13376 KB] Store 5893 patterns of size 6
+[t=0.083642s, 13376 KB] Finished storing patterns of size 6
+[t=0.871517s, 13376 KB] Generate patterns for size 7
+[t=0.883511s, 16616 KB] Found 12325 SGA patterns.
+[t=0.915505s, 20196 KB] Found 26691 interesting patterns.
+[t=0.919501s, 20196 KB] Store 18933 patterns of size 7
+[t=0.919501s, 20196 KB] Finished storing patterns of size 7
+[t=10.001934s, 20196 KB] Reached restart time limit.
+[t=10.001934s, 20196 KB] Patterns: 17, collection size: 8514
+[t=10.001934s, 20196 KB] Add pattern [2, 19]
+[t=10.001934s, 20196 KB] Add pattern [2, 18]
+[t=10.001934s, 20196 KB] Add pattern [2, 17]
+[t=10.001934s, 20196 KB] Add pattern [2, 16]
+[t=10.001934s, 20196 KB] Add pattern [2, 15]
+[t=10.001934s, 20196 KB] Add pattern [12, 14, 15]
+[t=10.001934s, 20196 KB] Add pattern [9, 14, 16]
+[t=10.001934s, 20196 KB] Add pattern [8, 14, 17]
+[t=10.001934s, 20196 KB] Add pattern [7, 14, 18]
+[t=10.001934s, 20196 KB] Add pattern [4, 14, 19]
+[t=10.001934s, 20196 KB] Add pattern [2, 9, 16]
+[t=10.001934s, 20196 KB] Add pattern [1, 9, 16]
+[t=10.001934s, 20196 KB] Add pattern [0, 9, 16]
+[t=10.005938s, 20196 KB] Add pattern [9, 10, 11, 14, 16]
+[t=10.853775s, 20196 KB] Add pattern [0, 1, 2, 12, 15, 19]
+[t=10.857778s, 20196 KB] Add pattern [0, 1, 2, 9, 16, 19]
+[t=10.865770s, 20196 KB] Add pattern [0, 1, 2, 7, 18, 19]
+[t=20.004181s, 20196 KB] Reached restart time limit.
+[t=20.004181s, 20196 KB] Patterns: 34, collection size: 25360
+[t=20.004181s, 20196 KB] Add pattern [1, 19]
+[t=20.004181s, 20196 KB] Add pattern [1, 18]
+[t=20.004181s, 20196 KB] Add pattern [1, 17]
+[t=20.004181s, 20196 KB] Add pattern [1, 16]
+[t=20.004181s, 20196 KB] Add pattern [1, 15]
+[t=20.004181s, 20196 KB] Add pattern [11, 12, 15]
+[t=20.004181s, 20196 KB] Add pattern [9, 11, 16]
+[t=20.004181s, 20196 KB] Add pattern [8, 11, 17]
+[t=20.004181s, 20196 KB] Add pattern [7, 11, 18]
+[t=20.004181s, 20196 KB] Add pattern [4, 11, 19]
+[t=20.004181s, 20196 KB] Add pattern [2, 8, 17]
+[t=20.004181s, 20196 KB] Add pattern [1, 8, 17]
+[t=20.004181s, 20196 KB] Add pattern [0, 8, 17]
+[t=20.012176s, 20196 KB] Add pattern [8, 10, 11, 14, 17]
+[t=20.844024s, 20196 KB] Add pattern [0, 1, 2, 12, 15, 18]
+[t=20.848027s, 20196 KB] Add pattern [0, 1, 2, 9, 16, 18]
+[t=20.856019s, 20196 KB] Add pattern [0, 1, 2, 7, 17, 18]
+[t=30.006429s, 20196 KB] Reached restart time limit.
+[t=30.006429s, 20196 KB] Patterns: 51, collection size: 42206
+[t=30.006429s, 20196 KB] Add pattern [0, 19]
+[t=30.006429s, 20196 KB] Add pattern [0, 18]
+[t=30.006429s, 20196 KB] Add pattern [0, 17]
+[t=30.006429s, 20196 KB] Add pattern [0, 16]
+[t=30.006429s, 20196 KB] Add pattern [0, 15]
+[t=30.006429s, 20196 KB] Add pattern [10, 12, 15]
+[t=30.006429s, 20196 KB] Add pattern [9, 10, 16]
+[t=30.006429s, 20196 KB] Add pattern [8, 10, 17]
+[t=30.006429s, 20196 KB] Add pattern [7, 10, 18]
+[t=30.006429s, 20196 KB] Add pattern [4, 10, 19]
+[t=30.006429s, 20196 KB] Add pattern [2, 7, 18]
+[t=30.006429s, 20196 KB] Add pattern [1, 7, 18]
+[t=30.006429s, 20196 KB] Add pattern [0, 7, 18]
+[t=30.014424s, 20196 KB] Add pattern [7, 10, 11, 14, 18]
+[t=30.846276s, 20196 KB] Add pattern [0, 1, 2, 12, 15, 17]
+[t=30.846276s, 20196 KB] Add pattern [0, 1, 2, 9, 16, 17]
+[t=30.854275s, 20196 KB] Add pattern [0, 1, 2, 7, 16, 18]
+[t=40.008724s, 20196 KB] Reached restart time limit.
+[t=40.008724s, 20196 KB] Patterns: 68, collection size: 59052
+[t=40.008724s, 20196 KB] Add pattern [2, 18, 19]
+[t=40.008724s, 20196 KB] Add pattern [2, 17, 19]
+[t=40.008724s, 20196 KB] Add pattern [2, 16, 19]
+[t=40.008724s, 20196 KB] Add pattern [2, 15, 19]
+[t=40.008724s, 20196 KB] Add pattern [2, 4, 19]
+[t=40.008724s, 20196 KB] Add pattern [1, 4, 19]
+[t=40.008724s, 20196 KB] Add pattern [0, 4, 19]
+[t=40.008724s, 20196 KB] Add pattern [12, 13, 14, 15]
+[t=40.008724s, 20196 KB] Add pattern [9, 13, 14, 16]
+[t=40.008724s, 20196 KB] Add pattern [8, 13, 14, 17]
+[t=40.008724s, 20196 KB] Add pattern [7, 13, 14, 18]
+[t=40.020718s, 20196 KB] Add pattern [4, 10, 11, 14, 19]
+[t=40.848576s, 20196 KB] Add pattern [0, 1, 2, 12, 15, 16]
+[t=40.848576s, 20196 KB] Add pattern [0, 1, 2, 9, 15, 16]
+[t=40.856572s, 20196 KB] Add pattern [0, 1, 2, 7, 15, 18]
+[t=50.011009s, 20196 KB] Reached restart time limit.
+[t=50.011009s, 20196 KB] Patterns: 83, collection size: 76116
+[t=50.011009s, 20196 KB] Add pattern [2, 17, 18]
+[t=50.011009s, 20196 KB] Add pattern [2, 16, 18]
+[t=50.011009s, 20196 KB] Add pattern [2, 15, 18]
+[t=50.011009s, 20196 KB] Add pattern [1, 18, 19]
+[t=50.011009s, 20196 KB] Add pattern [11, 12, 14, 15]
+[t=50.011009s, 20196 KB] Add pattern [9, 12, 14, 16]
+[t=50.011009s, 20196 KB] Add pattern [8, 12, 14, 17]
+[t=50.011009s, 20196 KB] Add pattern [7, 12, 14, 18]
+[t=50.011009s, 20196 KB] Add pattern [4, 13, 14, 19]
+[t=50.011009s, 20196 KB] Add pattern [2, 12, 15, 19]
+[t=50.015006s, 20196 KB] Add pattern [1, 12, 15, 19]
+[t=50.015006s, 20196 KB] Add pattern [0, 12, 15, 19]
+[t=50.035000s, 20196 KB] Add pattern [2, 11, 12, 14, 15]
+[t=50.070990s, 20196 KB] Add pattern [0, 1, 10, 12, 15]
+[t=50.842858s, 20196 KB] Add pattern [0, 1, 2, 9, 14, 16]
+[t=50.850857s, 20196 KB] Add pattern [0, 1, 2, 7, 14, 18]
+[t=60.013345s, 20196 KB] Reached restart time limit.
+[t=60.013345s, 20196 KB] Patterns: 99, collection size: 88836
+[t=60.013345s, 20196 KB] Add pattern [2, 16, 17]
+[t=60.013345s, 20196 KB] Add pattern [2, 15, 17]
+[t=60.013345s, 20196 KB] Add pattern [1, 17, 19]
+[t=60.013345s, 20196 KB] Add pattern [1, 17, 18]
+[t=60.013345s, 20196 KB] Add pattern [11, 12, 13, 15]
+[t=60.013345s, 20196 KB] Add pattern [9, 11, 14, 16]
+[t=60.013345s, 20196 KB] Add pattern [8, 11, 14, 17]
+[t=60.013345s, 20196 KB] Add pattern [7, 11, 14, 18]
+[t=60.013345s, 20196 KB] Add pattern [4, 12, 14, 19]
+[t=60.013345s, 20196 KB] Add pattern [2, 12, 15, 18]
+[t=60.013345s, 20196 KB] Add pattern [1, 12, 15, 18]
+[t=60.017349s, 20196 KB] Add pattern [0, 12, 15, 18]
+[t=60.037334s, 20196 KB] Add pattern [2, 9, 11, 14, 16]
+[t=60.073323s, 20196 KB] Add pattern [0, 1, 9, 10, 16]
+[t=60.849204s, 20196 KB] Add pattern [0, 1, 2, 12, 14, 15]
+[t=60.857202s, 20196 KB] Add pattern [0, 1, 2, 7, 11, 18]
+[t=70.015680s, 20196 KB] Reached restart time limit.
+[t=70.015680s, 20196 KB] Patterns: 115, collection size: 101492
+[t=70.015680s, 20196 KB] Add pattern [2, 15, 16]
+[t=70.015680s, 20196 KB] Add pattern [1, 16, 19]
+[t=70.015680s, 20196 KB] Add pattern [1, 16, 18]
+[t=70.015680s, 20196 KB] Add pattern [1, 16, 17]
+[t=70.015680s, 20196 KB] Add pattern [10, 12, 14, 15]
+[t=70.015680s, 20196 KB] Add pattern [9, 11, 13, 16]
+[t=70.015680s, 20196 KB] Add pattern [8, 11, 13, 17]
+[t=70.015680s, 20196 KB] Add pattern [7, 11, 13, 18]
+[t=70.015680s, 20196 KB] Add pattern [4, 11, 14, 19]
+[t=70.015680s, 20196 KB] Add pattern [2, 12, 15, 17]
+[t=70.019684s, 20196 KB] Add pattern [1, 12, 15, 17]
+[t=70.019684s, 20196 KB] Add pattern [0, 12, 15, 17]
+[t=70.039673s, 20196 KB] Add pattern [2, 7, 11, 14, 18]
+[t=70.075660s, 20196 KB] Add pattern [0, 1, 7, 10, 18]
+[t=70.855532s, 20196 KB] Add pattern [0, 1, 2, 11, 12, 15]
+[t=70.859535s, 20196 KB] Add pattern [0, 1, 2, 9, 11, 16]
+[t=80.017971s, 20196 KB] Reached restart time limit.
+[t=80.017971s, 20196 KB] Patterns: 131, collection size: 114180
+[t=80.017971s, 20196 KB] Add pattern [1, 15, 19]
+[t=80.017971s, 20196 KB] Add pattern [1, 15, 18]
+[t=80.017971s, 20196 KB] Add pattern [1, 15, 17]
+[t=80.017971s, 20196 KB] Add pattern [1, 15, 16]
+[t=80.017971s, 20196 KB] Add pattern [10, 12, 13, 15]
+[t=80.017971s, 20196 KB] Add pattern [9, 11, 12, 16]
+[t=80.017971s, 20196 KB] Add pattern [8, 11, 12, 17]
+[t=80.017971s, 20196 KB] Add pattern [7, 11, 12, 18]
+[t=80.017971s, 20196 KB] Add pattern [4, 11, 13, 19]
+[t=80.017971s, 20196 KB] Add pattern [2, 12, 15, 16]
+[t=80.021974s, 20196 KB] Add pattern [1, 12, 15, 16]
+[t=80.021974s, 20196 KB] Add pattern [0, 12, 15, 16]
+[t=80.049960s, 20196 KB] Add pattern [1, 10, 12, 14, 15]
+[t=80.073950s, 20196 KB] Add pattern [0, 2, 11, 12, 15]
+[t=80.853807s, 20196 KB] Add pattern [0, 1, 2, 9, 10, 16]
+[t=80.857804s, 20196 KB] Add pattern [0, 1, 2, 7, 10, 18]
+[t=90.020153s, 20196 KB] Reached restart time limit.
+[t=90.020153s, 20196 KB] Patterns: 147, collection size: 126932
+[t=90.020153s, 20196 KB] Add pattern [1, 2, 19]
+[t=90.020153s, 20196 KB] Add pattern [1, 2, 18]
+[t=90.020153s, 20196 KB] Add pattern [1, 2, 17]
+[t=90.020153s, 20196 KB] Add pattern [1, 2, 16]
+[t=90.020153s, 20196 KB] Add pattern [1, 2, 15]
+[t=90.020153s, 20196 KB] Add pattern [10, 11, 12, 15]
+[t=90.020153s, 20196 KB] Add pattern [9, 10, 14, 16]
+[t=90.020153s, 20196 KB] Add pattern [8, 10, 14, 17]
+[t=90.020153s, 20196 KB] Add pattern [7, 10, 14, 18]
+[t=90.020153s, 20196 KB] Add pattern [4, 11, 12, 19]
+[t=90.020153s, 20196 KB] Add pattern [2, 12, 14, 15]
+[t=90.024156s, 20196 KB] Add pattern [1, 12, 14, 15]
+[t=90.024156s, 20196 KB] Add pattern [0, 12, 14, 15]
+[t=90.052139s, 20196 KB] Add pattern [1, 9, 10, 14, 16]
+[t=90.076133s, 20196 KB] Add pattern [0, 2, 9, 11, 16]
+[t=90.867991s, 20196 KB] Add pattern [0, 1, 2, 10, 12, 15]
+[t=100.002464s, 20196 KB] Reached restart time limit.
+[t=100.002464s, 20196 KB] Patterns: 163, collection size: 134446
+[t=100.002464s, 20196 KB] Reached overall time limit.
+[t=100.002464s, 20196 KB] Time for computing ordered systematic patterns: 0.118977s
+[t=100.002464s, 20196 KB] Time for computing ordered systematic projections: 7.652289s
+[t=100.002464s, 20196 KB] Time for evaluating ordered systematic projections: 99.754877s
+[t=100.002464s, 20196 KB] Ordered systematic pattern evaluations: 262080
+[t=100.002464s, 20196 KB] Maximum generated ordered systematic pattern size: 7
+[t=100.002464s, 20196 KB] Selected ordered systematic patterns: 163/26691 = 0.006107
+[t=100.002464s, 20196 KB] Systematic dead ends: 0
+[t=100.002464s, 20196 KB] Systematic dead end tree nodes: 1
+[t=100.002464s, 20196 KB] sys-SCP pattern collection generator number of patterns: 163
+[t=100.002464s, 20196 KB] sys-SCP pattern collection generator total PDB size: 134446
+[t=100.002464s, 20196 KB] sys-SCP pattern collection generator computation time: 100.001809s
+[t=100.002464s, 20196 KB] Number of patterns: 163
+[t=100.002464s, 20196 KB] Maximum pattern size: 6
+[t=100.002464s, 20196 KB] Time for computing patterns: 100.001809s
+[t=100.002464s, 20196 KB] Build projections
+[t=100.002464s, 20196 KB] Time for building projections: 0.000000s
+[t=100.002464s, 20196 KB] Number of projections: 163
+[t=100.002464s, 20196 KB] Number of states in projections: 134446
+[t=100.002464s, 20196 KB] Build Cartesian abstractions
+
+[t=100.002464s, 530268 KB] Build abstractions for 5 subtasks in infs
+[t=100.002464s, 530268 KB] Subtask has zero-cost operators: false
+[t=100.002464s, 530268 KB] Start building abstraction.
+[t=100.002464s, 530268 KB] Maximum number of states: 429496729
+[t=100.002464s, 530268 KB] Maximum number of transitions: 200000
+[t=100.002464s, 530268 KB] Maximum time: infs
+[t=100.006467s, 530268 KB] Abstract solution cost: 1
+[t=100.006467s, 530268 KB] Abstract solution cost: 2
+[t=100.006467s, 530268 KB] Abstract solution cost: 3
+[t=100.006467s, 530268 KB] Abstract solution cost: 4
+[t=100.006467s, 530268 KB] Found concrete solution.
+[t=100.006467s, 530268 KB] Time for finding abstract traces: 0.000000s
+[t=100.006467s, 530268 KB] Time for finding flaws and computing splits: 0.000000s
+[t=100.006467s, 530268 KB] Time for splitting states: 0.000000s
+[t=100.006467s, 530268 KB] Time for updating goal distances: 0.000000s
+[t=100.006467s, 530268 KB] Number of refinements: 11
+[t=100.006467s, 530268 KB] Done building abstraction.
+[t=100.006467s, 530268 KB] Time for building abstraction: 0.004003s
+[t=100.006467s, 530268 KB] States: 12
+[t=100.006467s, 530268 KB] Goal states: 1
+[t=100.006467s, 530268 KB] Looping transitions: 612
+[t=100.006467s, 530268 KB] Non-looping transitions: 70
+[t=100.006467s, 530268 KB] Nodes in refinement hierarchy: 23
+[t=100.006467s, 530268 KB] Flaw searches: 4
+[t=100.006467s, 530268 KB] Expanded concrete states: 10
+[t=100.006467s, 530268 KB] Maximum expanded concrete states in single flaw search: 5
+[t=100.006467s, 530268 KB] Flaw search time: 0.000000s
+[t=100.006467s, 530268 KB] Time for computing splits: 0.000000s
+[t=100.006467s, 530268 KB] Time for selecting splits: 0.000000s
+[t=100.006467s, 530268 KB] Average number of refinements per flaw search: 2.750000
+[t=100.006467s, 530268 KB] Average number of expanded concrete states per flaw search: 2.500000
+[t=100.006467s, 530268 KB] Average flaw search time: 0.000000
+
+[t=100.006467s, 530268 KB] Subtask has zero-cost operators: false
+[t=100.006467s, 530268 KB] Start building abstraction.
+[t=100.006467s, 530268 KB] Maximum number of states: 536870908
+[t=100.006467s, 530268 KB] Maximum number of transitions: 249982
+[t=100.006467s, 530268 KB] Maximum time: infs
+[t=100.006467s, 530268 KB] Abstract solution cost: 1
+[t=100.006467s, 530268 KB] Abstract solution cost: 2
+[t=100.006467s, 530268 KB] Found concrete solution.
+[t=100.006467s, 530268 KB] Time for finding abstract traces: 0.000000s
+[t=100.006467s, 530268 KB] Time for finding flaws and computing splits: 0.000000s
+[t=100.006467s, 530268 KB] Time for splitting states: 0.000000s
+[t=100.006467s, 530268 KB] Time for updating goal distances: 0.000000s
+[t=100.006467s, 530268 KB] Number of refinements: 2
+[t=100.006467s, 530268 KB] Done building abstraction.
+[t=100.006467s, 530268 KB] Time for building abstraction: 0.000000s
+[t=100.006467s, 530268 KB] States: 3
+[t=100.006467s, 530268 KB] Goal states: 1
+[t=100.006467s, 530268 KB] Looping transitions: 237
+[t=100.006467s, 530268 KB] Non-looping transitions: 6
+[t=100.006467s, 530268 KB] Nodes in refinement hierarchy: 5
+[t=100.006467s, 530268 KB] Flaw searches: 2
+[t=100.006467s, 530268 KB] Expanded concrete states: 4
+[t=100.006467s, 530268 KB] Maximum expanded concrete states in single flaw search: 3
+[t=100.006467s, 530268 KB] Flaw search time: 0.000000s
+[t=100.006467s, 530268 KB] Time for computing splits: 0.000000s
+[t=100.006467s, 530268 KB] Time for selecting splits: 0.000000s
+[t=100.006467s, 530268 KB] Average number of refinements per flaw search: 1.000000
+[t=100.006467s, 530268 KB] Average number of expanded concrete states per flaw search: 2.000000
+[t=100.006467s, 530268 KB] Average flaw search time: 0.000000
+
+[t=100.006467s, 530268 KB] Subtask has zero-cost operators: false
+[t=100.006467s, 530268 KB] Start building abstraction.
+[t=100.006467s, 530268 KB] Maximum number of states: 715827877
+[t=100.006467s, 530268 KB] Maximum number of transitions: 333308
+[t=100.006467s, 530268 KB] Maximum time: infs
+[t=100.006467s, 530268 KB] Abstract solution cost: 1
+[t=100.006467s, 530268 KB] Abstract solution cost: 2
+[t=100.006467s, 530268 KB] Found concrete solution.
+[t=100.006467s, 530268 KB] Time for finding abstract traces: 0.000000s
+[t=100.006467s, 530268 KB] Time for finding flaws and computing splits: 0.000000s
+[t=100.006467s, 530268 KB] Time for splitting states: 0.000000s
+[t=100.006467s, 530268 KB] Time for updating goal distances: 0.000000s
+[t=100.006467s, 530268 KB] Number of refinements: 2
+[t=100.006467s, 530268 KB] Done building abstraction.
+[t=100.006467s, 530268 KB] Time for building abstraction: 0.000000s
+[t=100.006467s, 530268 KB] States: 3
+[t=100.006467s, 530268 KB] Goal states: 1
+[t=100.006467s, 530268 KB] Looping transitions: 237
+[t=100.006467s, 530268 KB] Non-looping transitions: 6
+[t=100.006467s, 530268 KB] Nodes in refinement hierarchy: 5
+[t=100.006467s, 530268 KB] Flaw searches: 2
+[t=100.006467s, 530268 KB] Expanded concrete states: 4
+[t=100.006467s, 530268 KB] Maximum expanded concrete states in single flaw search: 3
+[t=100.006467s, 530268 KB] Flaw search time: 0.000000s
+[t=100.006467s, 530268 KB] Time for computing splits: 0.000000s
+[t=100.006467s, 530268 KB] Time for selecting splits: 0.000000s
+[t=100.006467s, 530268 KB] Average number of refinements per flaw search: 1.000000
+[t=100.006467s, 530268 KB] Average number of expanded concrete states per flaw search: 2.000000
+[t=100.006467s, 530268 KB] Average flaw search time: 0.000000
+
+[t=100.006467s, 530268 KB] Subtask has zero-cost operators: false
+[t=100.006467s, 530268 KB] Start building abstraction.
+[t=100.006467s, 530268 KB] Maximum number of states: 1073741814
+[t=100.006467s, 530268 KB] Maximum number of transitions: 499959
+[t=100.006467s, 530268 KB] Maximum time: infs
+[t=100.006467s, 530268 KB] Abstract solution cost: 1
+[t=100.006467s, 530268 KB] Abstract solution cost: 2
+[t=100.006467s, 530268 KB] Abstract solution cost: 3
+[t=100.006467s, 530268 KB] Found concrete solution.
+[t=100.006467s, 530268 KB] Time for finding abstract traces: 0.000000s
+[t=100.006467s, 530268 KB] Time for finding flaws and computing splits: 0.000000s
+[t=100.006467s, 530268 KB] Time for splitting states: 0.000000s
+[t=100.006467s, 530268 KB] Time for updating goal distances: 0.000000s
+[t=100.006467s, 530268 KB] Number of refinements: 6
+[t=100.006467s, 530268 KB] Done building abstraction.
+[t=100.006467s, 530268 KB] Time for building abstraction: 0.000000s
+[t=100.006467s, 530268 KB] States: 7
+[t=100.006467s, 530268 KB] Goal states: 1
+[t=100.006467s, 530268 KB] Looping transitions: 449
+[t=100.006467s, 530268 KB] Non-looping transitions: 31
+[t=100.006467s, 530268 KB] Nodes in refinement hierarchy: 13
+[t=100.006467s, 530268 KB] Flaw searches: 3
+[t=100.006467s, 530268 KB] Expanded concrete states: 7
+[t=100.006467s, 530268 KB] Maximum expanded concrete states in single flaw search: 4
+[t=100.006467s, 530268 KB] Flaw search time: 0.000000s
+[t=100.006467s, 530268 KB] Time for computing splits: 0.000000s
+[t=100.006467s, 530268 KB] Time for selecting splits: 0.000000s
+[t=100.006467s, 530268 KB] Average number of refinements per flaw search: 2.000000
+[t=100.006467s, 530268 KB] Average number of expanded concrete states per flaw search: 2.333333
+[t=100.006467s, 530268 KB] Average flaw search time: 0.000000
+
+[t=100.006467s, 530268 KB] Subtask has zero-cost operators: false
+[t=100.006467s, 530268 KB] Start building abstraction.
+[t=100.006467s, 530268 KB] Maximum number of states: 2147483622
+[t=100.006467s, 530268 KB] Maximum number of transitions: 999887
+[t=100.006467s, 530268 KB] Maximum time: infs
+[t=100.006467s, 530268 KB] Abstract solution cost: 1
+[t=100.006467s, 530268 KB] Abstract solution cost: 2
+[t=100.006467s, 530268 KB] Abstract solution cost: 3
+[t=100.006467s, 530268 KB] Abstract solution cost: 4
+[t=100.006467s, 530268 KB] Found concrete solution.
+[t=100.006467s, 530268 KB] Time for finding abstract traces: 0.000000s
+[t=100.006467s, 530268 KB] Time for finding flaws and computing splits: 0.000000s
+[t=100.006467s, 530268 KB] Time for splitting states: 0.000000s
+[t=100.006467s, 530268 KB] Time for updating goal distances: 0.000000s
+[t=100.006467s, 530268 KB] Number of refinements: 11
+[t=100.006467s, 530268 KB] Done building abstraction.
+[t=100.006467s, 530268 KB] Time for building abstraction: 0.000000s
+[t=100.006467s, 530268 KB] States: 12
+[t=100.006467s, 530268 KB] Goal states: 1
+[t=100.006467s, 530268 KB] Looping transitions: 612
+[t=100.006467s, 530268 KB] Non-looping transitions: 70
+[t=100.006467s, 530268 KB] Nodes in refinement hierarchy: 23
+[t=100.006467s, 530268 KB] Flaw searches: 4
+[t=100.006467s, 530268 KB] Expanded concrete states: 10
+[t=100.006467s, 530268 KB] Maximum expanded concrete states in single flaw search: 5
+[t=100.006467s, 530268 KB] Flaw search time: 0.000000s
+[t=100.006467s, 530268 KB] Time for computing splits: 0.000000s
+[t=100.006467s, 530268 KB] Time for selecting splits: 0.000000s
+[t=100.006467s, 530268 KB] Average number of refinements per flaw search: 2.750000
+[t=100.006467s, 530268 KB] Average number of expanded concrete states per flaw search: 2.500000
+[t=100.006467s, 530268 KB] Average flaw search time: 0.000000
+
+[t=100.006467s, 530268 KB] Build abstractions for 5 subtasks in infs
+[t=100.006467s, 530268 KB] Subtask has zero-cost operators: false
+[t=100.006467s, 530268 KB] Start building abstraction.
+[t=100.006467s, 530268 KB] Maximum number of states: 429496722
+[t=100.006467s, 530268 KB] Maximum number of transitions: 199963
+[t=100.006467s, 530268 KB] Maximum time: infs
+[t=100.006467s, 530268 KB] Abstract solution cost: 1
+[t=100.006467s, 530268 KB] Abstract solution cost: 2
+[t=100.006467s, 530268 KB] Found concrete solution.
+[t=100.006467s, 530268 KB] Time for finding abstract traces: 0.000000s
+[t=100.006467s, 530268 KB] Time for finding flaws and computing splits: 0.000000s
+[t=100.006467s, 530268 KB] Time for splitting states: 0.000000s
+[t=100.006467s, 530268 KB] Time for updating goal distances: 0.000000s
+[t=100.006467s, 530268 KB] Number of refinements: 2
+[t=100.006467s, 530268 KB] Done building abstraction.
+[t=100.006467s, 530268 KB] Time for building abstraction: 0.000000s
+[t=100.006467s, 530268 KB] States: 3
+[t=100.006467s, 530268 KB] Goal states: 1
+[t=100.006467s, 530268 KB] Looping transitions: 237
+[t=100.006467s, 530268 KB] Non-looping transitions: 6
+[t=100.006467s, 530268 KB] Nodes in refinement hierarchy: 5
+[t=100.006467s, 530268 KB] Flaw searches: 2
+[t=100.006467s, 530268 KB] Expanded concrete states: 4
+[t=100.006467s, 530268 KB] Maximum expanded concrete states in single flaw search: 3
+[t=100.006467s, 530268 KB] Flaw search time: 0.000000s
+[t=100.006467s, 530268 KB] Time for computing splits: 0.000000s
+[t=100.006467s, 530268 KB] Time for selecting splits: 0.000000s
+[t=100.006467s, 530268 KB] Average number of refinements per flaw search: 1.000000
+[t=100.006467s, 530268 KB] Average number of expanded concrete states per flaw search: 2.000000
+[t=100.006467s, 530268 KB] Average flaw search time: 0.000000
+
+[t=100.006467s, 530268 KB] Subtask has zero-cost operators: false
+[t=100.006467s, 530268 KB] Start building abstraction.
+[t=100.006467s, 530268 KB] Maximum number of states: 536870901
+[t=100.006467s, 530268 KB] Maximum number of transitions: 249952
+[t=100.006467s, 530268 KB] Maximum time: infs
+[t=100.006467s, 530268 KB] Abstract solution cost: 1
+[t=100.006467s, 530268 KB] Abstract solution cost: 2
+[t=100.006467s, 530268 KB] Found concrete solution.
+[t=100.006467s, 530268 KB] Time for finding abstract traces: 0.000000s
+[t=100.006467s, 530268 KB] Time for finding flaws and computing splits: 0.000000s
+[t=100.006467s, 530268 KB] Time for splitting states: 0.000000s
+[t=100.006467s, 530268 KB] Time for updating goal distances: 0.000000s
+[t=100.006467s, 530268 KB] Number of refinements: 2
+[t=100.006467s, 530268 KB] Done building abstraction.
+[t=100.006467s, 530268 KB] Time for building abstraction: 0.000000s
+[t=100.006467s, 530268 KB] States: 3
+[t=100.006467s, 530268 KB] Goal states: 1
+[t=100.006467s, 530268 KB] Looping transitions: 237
+[t=100.006467s, 530268 KB] Non-looping transitions: 6
+[t=100.006467s, 530268 KB] Nodes in refinement hierarchy: 5
+[t=100.006467s, 530268 KB] Flaw searches: 2
+[t=100.006467s, 530268 KB] Expanded concrete states: 4
+[t=100.006467s, 530268 KB] Maximum expanded concrete states in single flaw search: 3
+[t=100.006467s, 530268 KB] Flaw search time: 0.000000s
+[t=100.006467s, 530268 KB] Time for computing splits: 0.000000s
+[t=100.006467s, 530268 KB] Time for selecting splits: 0.000000s
+[t=100.006467s, 530268 KB] Average number of refinements per flaw search: 1.000000
+[t=100.006467s, 530268 KB] Average number of expanded concrete states per flaw search: 2.000000
+[t=100.006467s, 530268 KB] Average flaw search time: 0.000000
+
+[t=100.006467s, 530268 KB] Subtask has zero-cost operators: false
+[t=100.006467s, 530268 KB] Start building abstraction.
+[t=100.006467s, 530268 KB] Maximum number of states: 715827868
+[t=100.006467s, 530268 KB] Maximum number of transitions: 333268
+[t=100.006467s, 530268 KB] Maximum time: infs
+[t=100.006467s, 530268 KB] Abstract solution cost: 1
+[t=100.006467s, 530268 KB] Abstract solution cost: 2
+[t=100.006467s, 530268 KB] Abstract solution cost: 3
+[t=100.006467s, 530268 KB] Found concrete solution.
+[t=100.006467s, 530268 KB] Time for finding abstract traces: 0.000000s
+[t=100.006467s, 530268 KB] Time for finding flaws and computing splits: 0.000000s
+[t=100.006467s, 530268 KB] Time for splitting states: 0.000000s
+[t=100.006467s, 530268 KB] Time for updating goal distances: 0.000000s
+[t=100.006467s, 530268 KB] Number of refinements: 6
+[t=100.006467s, 530268 KB] Done building abstraction.
+[t=100.006467s, 530268 KB] Time for building abstraction: 0.000000s
+[t=100.006467s, 530268 KB] States: 7
+[t=100.006467s, 530268 KB] Goal states: 1
+[t=100.006467s, 530268 KB] Looping transitions: 449
+[t=100.006467s, 530268 KB] Non-looping transitions: 31
+[t=100.006467s, 530268 KB] Nodes in refinement hierarchy: 13
+[t=100.006467s, 530268 KB] Flaw searches: 3
+[t=100.006467s, 530268 KB] Expanded concrete states: 7
+[t=100.006467s, 530268 KB] Maximum expanded concrete states in single flaw search: 4
+[t=100.006467s, 530268 KB] Flaw search time: 0.000000s
+[t=100.006467s, 530268 KB] Time for computing splits: 0.000000s
+[t=100.006467s, 530268 KB] Time for selecting splits: 0.000000s
+[t=100.006467s, 530268 KB] Average number of refinements per flaw search: 2.000000
+[t=100.006467s, 530268 KB] Average number of expanded concrete states per flaw search: 2.333333
+[t=100.006467s, 530268 KB] Average flaw search time: 0.000000
+
+[t=100.006467s, 530268 KB] Subtask has zero-cost operators: false
+[t=100.006467s, 530268 KB] Start building abstraction.
+[t=100.006467s, 530268 KB] Maximum number of states: 1073741798
+[t=100.006467s, 530268 KB] Maximum number of transitions: 499887
+[t=100.006467s, 530268 KB] Maximum time: infs
+[t=100.006467s, 530268 KB] Abstract solution cost: 1
+[t=100.006467s, 530268 KB] Abstract solution cost: 2
+[t=100.006467s, 530268 KB] Abstract solution cost: 3
+[t=100.006467s, 530268 KB] Abstract solution cost: 4
+[t=100.006467s, 530268 KB] Found concrete solution.
+[t=100.006467s, 530268 KB] Time for finding abstract traces: 0.000000s
+[t=100.006467s, 530268 KB] Time for finding flaws and computing splits: 0.000000s
+[t=100.006467s, 530268 KB] Time for splitting states: 0.000000s
+[t=100.006467s, 530268 KB] Time for updating goal distances: 0.000000s
+[t=100.006467s, 530268 KB] Number of refinements: 11
+[t=100.006467s, 530268 KB] Done building abstraction.
+[t=100.006467s, 530268 KB] Time for building abstraction: 0.000000s
+[t=100.006467s, 530268 KB] States: 12
+[t=100.006467s, 530268 KB] Goal states: 1
+[t=100.006467s, 530268 KB] Looping transitions: 612
+[t=100.006467s, 530268 KB] Non-looping transitions: 70
+[t=100.006467s, 530268 KB] Nodes in refinement hierarchy: 23
+[t=100.006467s, 530268 KB] Flaw searches: 4
+[t=100.006467s, 530268 KB] Expanded concrete states: 10
+[t=100.006467s, 530268 KB] Maximum expanded concrete states in single flaw search: 5
+[t=100.006467s, 530268 KB] Flaw search time: 0.000000s
+[t=100.006467s, 530268 KB] Time for computing splits: 0.000000s
+[t=100.006467s, 530268 KB] Time for selecting splits: 0.000000s
+[t=100.006467s, 530268 KB] Average number of refinements per flaw search: 2.750000
+[t=100.006467s, 530268 KB] Average number of expanded concrete states per flaw search: 2.500000
+[t=100.006467s, 530268 KB] Average flaw search time: 0.000000
+
+[t=100.006467s, 530268 KB] Subtask has zero-cost operators: false
+[t=100.006467s, 530268 KB] Start building abstraction.
+[t=100.006467s, 530268 KB] Maximum number of states: 2147483585
+[t=100.006467s, 530268 KB] Maximum number of transitions: 999704
+[t=100.006467s, 530268 KB] Maximum time: infs
+[t=100.006467s, 530268 KB] Abstract solution cost: 1
+[t=100.006467s, 530268 KB] Abstract solution cost: 2
+[t=100.006467s, 530268 KB] Abstract solution cost: 3
+[t=100.006467s, 530268 KB] Abstract solution cost: 4
+[t=100.006467s, 530268 KB] Found concrete solution.
+[t=100.006467s, 530268 KB] Time for finding abstract traces: 0.000000s
+[t=100.006467s, 530268 KB] Time for finding flaws and computing splits: 0.000000s
+[t=100.006467s, 530268 KB] Time for splitting states: 0.000000s
+[t=100.006467s, 530268 KB] Time for updating goal distances: 0.000000s
+[t=100.006467s, 530268 KB] Number of refinements: 11
+[t=100.006467s, 530268 KB] Done building abstraction.
+[t=100.006467s, 530268 KB] Time for building abstraction: 0.000000s
+[t=100.006467s, 530268 KB] States: 12
+[t=100.006467s, 530268 KB] Goal states: 1
+[t=100.006467s, 530268 KB] Looping transitions: 612
+[t=100.006467s, 530268 KB] Non-looping transitions: 70
+[t=100.006467s, 530268 KB] Nodes in refinement hierarchy: 23
+[t=100.006467s, 530268 KB] Flaw searches: 4
+[t=100.006467s, 530268 KB] Expanded concrete states: 10
+[t=100.006467s, 530268 KB] Maximum expanded concrete states in single flaw search: 5
+[t=100.006467s, 530268 KB] Flaw search time: 0.000000s
+[t=100.006467s, 530268 KB] Time for computing splits: 0.000000s
+[t=100.006467s, 530268 KB] Time for selecting splits: 0.000000s
+[t=100.006467s, 530268 KB] Average number of refinements per flaw search: 2.750000
+[t=100.006467s, 530268 KB] Average number of expanded concrete states per flaw search: 2.500000
+[t=100.006467s, 530268 KB] Average flaw search time: 0.000000
+
+[t=100.006467s, 530268 KB] Cartesian abstractions: 10
+[t=100.006467s, 530268 KB] Time for building Cartesian abstractions: 0.004003s
+[t=100.006467s, 530268 KB] Total number of Cartesian states: 74
+[t=100.006467s, 530268 KB] Total number of transitions in Cartesian abstractions: 366
+[t=100.006467s, 530268 KB] Abstractions: 173
+[t=100.006467s, 530268 KB] Abstractions per generator: [163, 10]
+[t=100.006467s, 530268 KB] Initialize greedy order generator
+[t=100.022454s, 530268 KB] Time for computing h values and saturated costs: 0.015986s
+[t=100.022454s, 530268 KB] Done computing surplus costs
+[t=100.022454s, 530268 KB] Compute stolen costs
+[t=100.022454s, 530268 KB] Time for initializing greedy order generator: 0.015986s
+[t=100.022454s, 530268 KB] Building successor generator...done!
+[t=100.022454s, 530268 KB] peak memory difference for successor generator creation: 0 KB
+[t=100.022454s, 530268 KB] time for successor generation creation: 0.000000s
+[t=100.022454s, 530268 KB] Variables: 20
+[t=100.022454s, 530268 KB] FactPairs: 73
+[t=100.022454s, 530268 KB] Bytes per state: 8
+[t=100.022454s, 530268 KB] Conducting best first search with reopening closed nodes, (real) bound = 2147483647
+Static greedy unique scores: 15
+Time for computing greedy order: 0.000000s
+[t=100.050407s, 530268 KB] Evaluated states: 1, selected states: 1, stored SCPs: 1, heuristic size: 2 KB, selection time: 0.000000s, diversification time: 0.027953s
+[t=100.050407s, 530268 KB] New best heuristic value for scp_online([projections(sys_scp(max_time=100,max_time_per_restart=10)),cartesian()],saturator=perimstar,max_time=1000,interval=10k,orders=greedy_orders()): 13
+[t=100.050407s, 530268 KB] g=0, 1 evaluated, 0 expanded
+[t=100.050407s, 530268 KB] f = 13, 1 evaluated, 0 expanded
+[t=100.050407s, 530268 KB] Initial heuristic value for scp_online([projections(sys_scp(max_time=100,max_time_per_restart=10)),cartesian()],saturator=perimstar,max_time=1000,interval=10k,orders=greedy_orders()): 13
+[t=100.050407s, 530268 KB] pruning method: atom-centric stubborn sets
+[t=100.050407s, 530268 KB] pruning method: limited
+[t=100.050407s, 530268 KB] New best heuristic value for scp_online([projections(sys_scp(max_time=100,max_time_per_restart=10)),cartesian()],saturator=perimstar,max_time=1000,interval=10k,orders=greedy_orders()): 12
+[t=100.050407s, 530268 KB] g=1, 3 evaluated, 1 expanded
+[t=100.050407s, 530268 KB] New best heuristic value for scp_online([projections(sys_scp(max_time=100,max_time_per_restart=10)),cartesian()],saturator=perimstar,max_time=1000,interval=10k,orders=greedy_orders()): 11
+[t=100.050407s, 530268 KB] g=2, 15 evaluated, 2 expanded
+[t=100.050407s, 530268 KB] New best heuristic value for scp_online([projections(sys_scp(max_time=100,max_time_per_restart=10)),cartesian()],saturator=perimstar,max_time=1000,interval=10k,orders=greedy_orders()): 10
+[t=100.050407s, 530268 KB] g=3, 22 evaluated, 3 expanded
+[t=100.050407s, 530268 KB] New best heuristic value for scp_online([projections(sys_scp(max_time=100,max_time_per_restart=10)),cartesian()],saturator=perimstar,max_time=1000,interval=10k,orders=greedy_orders()): 9
+[t=100.050407s, 530268 KB] g=4, 38 evaluated, 5 expanded
+[t=100.050407s, 530268 KB] New best heuristic value for scp_online([projections(sys_scp(max_time=100,max_time_per_restart=10)),cartesian()],saturator=perimstar,max_time=1000,interval=10k,orders=greedy_orders()): 8
+[t=100.050407s, 530268 KB] g=5, 45 evaluated, 6 expanded
+[t=100.050407s, 530268 KB] New best heuristic value for scp_online([projections(sys_scp(max_time=100,max_time_per_restart=10)),cartesian()],saturator=perimstar,max_time=1000,interval=10k,orders=greedy_orders()): 7
+[t=100.054411s, 530268 KB] g=6, 52 evaluated, 7 expanded
+[t=100.054411s, 530268 KB] New best heuristic value for scp_online([projections(sys_scp(max_time=100,max_time_per_restart=10)),cartesian()],saturator=perimstar,max_time=1000,interval=10k,orders=greedy_orders()): 6
+[t=100.054411s, 530268 KB] g=7, 203 evaluated, 29 expanded
+[t=100.054411s, 530268 KB] f = 14, 577 evaluated, 77 expanded
+[t=100.054411s, 530268 KB] New best heuristic value for scp_online([projections(sys_scp(max_time=100,max_time_per_restart=10)),cartesian()],saturator=perimstar,max_time=1000,interval=10k,orders=greedy_orders()): 5
+[t=100.054411s, 530268 KB] g=9, 585 evaluated, 80 expanded
+[t=100.054411s, 530268 KB] New best heuristic value for scp_online([projections(sys_scp(max_time=100,max_time_per_restart=10)),cartesian()],saturator=perimstar,max_time=1000,interval=10k,orders=greedy_orders()): 4
+[t=100.054411s, 530268 KB] g=10, 727 evaluated, 112 expanded
+[t=100.066395s, 530268 KB] Pruning ratio after 1000 calls: 0.089031
+[t=100.066395s, 530268 KB] -- pruning ratio is lower than minimum pruning ratio (0.200000) -> switching off pruning
+[t=100.070396s, 530268 KB] f = 15, 6308 evaluated, 1116 expanded
+[t=100.070396s, 530268 KB] New best heuristic value for scp_online([projections(sys_scp(max_time=100,max_time_per_restart=10)),cartesian()],saturator=perimstar,max_time=1000,interval=10k,orders=greedy_orders()): 3
+[t=100.070396s, 530268 KB] g=12, 6317 evaluated, 1119 expanded
+[t=100.110382s, 530268 KB] Evaluated states: 10001, selected states: 2, stored SCPs: 2, heuristic size: 68 KB, selection time: 0.000000s, diversification time: 0.078366s
+[t=100.166366s, 530268 KB] Evaluated states: 20001, selected states: 3, stored SCPs: 3, heuristic size: 113 KB, selection time: 0.000000s, diversification time: 0.126349s
+[t=100.222352s, 530268 KB] Evaluated states: 30001, selected states: 4, stored SCPs: 4, heuristic size: 157 KB, selection time: 0.000000s, diversification time: 0.178335s
+[t=100.226355s, 530268 KB] f = 16, 31174 evaluated, 6578 expanded
+[t=100.278337s, 530268 KB] Evaluated states: 40001, selected states: 5, stored SCPs: 5, heuristic size: 182 KB, selection time: 0.000000s, diversification time: 0.222324s
+[t=100.334324s, 530268 KB] Evaluated states: 50001, selected states: 6, stored SCPs: 6, heuristic size: 230 KB, selection time: 0.000000s, diversification time: 0.266312s
+[t=100.394314s, 530268 KB] Evaluated states: 60001, selected states: 7, stored SCPs: 7, heuristic size: 296 KB, selection time: 0.000000s, diversification time: 0.314309s
+[t=100.494291s, 530268 KB] Evaluated states: 80001, selected states: 9, stored SCPs: 8, heuristic size: 343 KB, selection time: 0.000000s, diversification time: 0.402283s
+[t=100.562274s, 530268 KB] f = 17, 99237 evaluated, 22983 expanded
+[t=100.562274s, 530268 KB] New best heuristic value for scp_online([projections(sys_scp(max_time=100,max_time_per_restart=10)),cartesian()],saturator=perimstar,max_time=1000,interval=10k,orders=greedy_orders()): 2
+[t=100.562274s, 530268 KB] g=15, 99316 evaluated, 22993 expanded
+[t=100.682255s, 530268 KB] Evaluated states: 120001, selected states: 13, stored SCPs: 9, heuristic size: 388 KB, selection time: 0.000000s, diversification time: 0.534260s
+[t=100.778227s, 530268 KB] Evaluated states: 140001, selected states: 15, stored SCPs: 10, heuristic size: 456 KB, selection time: 0.000000s, diversification time: 0.606248s
+[t=100.838216s, 530268 KB] Evaluated states: 150001, selected states: 16, stored SCPs: 11, heuristic size: 525 KB, selection time: 0.000000s, diversification time: 0.658234s
+[t=100.938197s, 530268 KB] Evaluated states: 170001, selected states: 18, stored SCPs: 12, heuristic size: 569 KB, selection time: 0.000000s, diversification time: 0.726222s
+[t=101.042174s, 530268 KB] Evaluated states: 190001, selected states: 20, stored SCPs: 13, heuristic size: 614 KB, selection time: 0.000000s, diversification time: 0.810218s
+[t=101.102159s, 530268 KB] Evaluated states: 200001, selected states: 21, stored SCPs: 14, heuristic size: 680 KB, selection time: 0.000000s, diversification time: 0.858211s
+[t=101.258132s, 530268 KB] Evaluated states: 230001, selected states: 24, stored SCPs: 15, heuristic size: 724 KB, selection time: 0.000000s, diversification time: 0.982191s
+[t=101.414100s, 530268 KB] f = 18, 264342 evaluated, 58591 expanded
+[t=101.414100s, 530268 KB] New best heuristic value for scp_online([projections(sys_scp(max_time=100,max_time_per_restart=10)),cartesian()],saturator=perimstar,max_time=1000,interval=10k,orders=greedy_orders()): 1
+[t=101.414100s, 530268 KB] g=17, 264416 evaluated, 58604 expanded
+[t=101.414100s, 530268 KB] New best heuristic value for scp_online([projections(sys_scp(max_time=100,max_time_per_restart=10)),cartesian()],saturator=perimstar,max_time=1000,interval=10k,orders=greedy_orders()): 0
+[t=101.414100s, 530268 KB] g=18, 264430 evaluated, 58605 expanded
+[t=101.414100s, 530268 KB] Solution found!
+[t=101.414100s, 530268 KB] Actual search time: 1.363693s
+sample_rock rover3 rover3store waypoint4 (1)
+communicate_rock_data rover3 general waypoint4 waypoint4 waypoint2 (1)
+sample_soil rover1 rover1store waypoint6 (1)
+navigate rover1 waypoint6 waypoint4 (1)
+communicate_soil_data rover1 general waypoint6 waypoint4 waypoint2 (1)
+navigate rover1 waypoint4 waypoint5 (1)
+drop rover1 rover1store (1)
+sample_soil rover1 rover1store waypoint5 (1)
+navigate rover1 waypoint5 waypoint4 (1)
+communicate_soil_data rover1 general waypoint5 waypoint4 waypoint2 (1)
+navigate rover1 waypoint4 waypoint3 (1)
+drop rover1 rover1store (1)
+sample_soil rover1 rover1store waypoint3 (1)
+navigate rover1 waypoint3 waypoint4 (1)
+communicate_soil_data rover1 general waypoint3 waypoint4 waypoint2 (1)
+drop rover1 rover1store (1)
+sample_soil rover1 rover1store waypoint4 (1)
+communicate_soil_data rover1 general waypoint4 waypoint4 waypoint2 (1)
+[t=101.414100s, 530268 KB] Plan length: 18 step(s).
+[t=101.414100s, 530268 KB] Plan cost: 18
+[t=101.414100s, 530268 KB] Expanded 58606 state(s).
+[t=101.414100s, 530268 KB] Reopened 0 state(s).
+[t=101.414100s, 530268 KB] Evaluated 264432 state(s).
+[t=101.414100s, 530268 KB] Evaluations: 264432
+[t=101.414100s, 530268 KB] Generated 631973 state(s).
+[t=101.414100s, 530268 KB] Dead ends: 0 state(s).
+[t=101.414100s, 530268 KB] Expanded until last jump: 58591 state(s).
+[t=101.414100s, 530268 KB] Reopened until last jump: 0 state(s).
+[t=101.414100s, 530268 KB] Evaluated until last jump: 264342 state(s).
+[t=101.414100s, 530268 KB] Generated until last jump: 631777 state(s).
+[t=101.414100s, 530268 KB] Number of registered states: 264432
+[t=101.414100s, 530268 KB] Closed list load factor: 264432/524287 = 0.504365
+[t=101.414100s, 530268 KB] total successors before pruning: 632878
+[t=101.414100s, 530268 KB] total successors after pruning: 631973
+[t=101.414100s, 530268 KB] Pruning ratio: 0.001430
+[t=101.414100s, 530268 KB] Search time: 1.391647s
+[t=101.414100s, 530268 KB] Total time: 101.414100s
+Solution found.
+[t=101.414100s, 530268 KB] Evaluated states: 264432, selected states: 27, stored SCPs: 15, heuristic size: 724 KB, selection time: 0.000000s, diversification time: 1.106171s
+[t=101.414100s, 530268 KB] Stored lookup tables: 192
+[t=101.414100s, 530268 KB] Stored values: 186126
+[t=101.414100s, 530268 KB] Evaluated states: 264432
+[t=101.414100s, 530268 KB] Time for improving heuristic: 1.106171s
+[t=101.414100s, 530268 KB] Estimated heuristic size: 724 KB
+[t=101.414100s, 530268 KB] Computed SCPs: 27
+[t=101.414100s, 530268 KB] Stored SCPs: 15
+Peak memory: 530268 KB
+search exit code: 0
+
+INFO     Planner time: 101.49s

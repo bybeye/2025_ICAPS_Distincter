@@ -1,0 +1,826 @@
+INFO     planner time limit: None
+INFO     planner memory limit: None
+
+INFO     Running translator.
+INFO     translator stdin: None
+INFO     translator time limit: None
+INFO     translator memory limit: None
+INFO     translator command line string: /usr/bin/python3 /opt/scorpion/builds/release/bin/translate/translate.py /mnt/benchmarks/rovers/domain.pddl /mnt/benchmarks/rovers/tmp/rovers_p47_i3.pddl --sas-file /mnt/benchmarks/rovers/tmp/rovers_p47_i3.sas
+Parsing...
+Parsing: [0.000s CPU, 0.002s wall-clock]
+Normalizing task... [0.000s CPU, 0.000s wall-clock]
+Instantiating...
+Generating Datalog program... [0.000s CPU, 0.000s wall-clock]
+Normalizing Datalog program...
+Normalizing Datalog program: [0.000s CPU, 0.002s wall-clock]
+Preparing model... [0.000s CPU, 0.001s wall-clock]
+Generated 77 rules.
+Computing model... [0.010s CPU, 0.005s wall-clock]
+522 relevant atoms
+691 auxiliary atoms
+1213 final queue length
+1437 total queue pushes
+Completing instantiation... [0.000s CPU, 0.004s wall-clock]
+Instantiating: [0.010s CPU, 0.012s wall-clock]
+Computing fact groups...
+Finding invariants...
+31 initial candidates
+Finding invariants: [0.010s CPU, 0.002s wall-clock]
+Checking invariant weight... [0.000s CPU, 0.000s wall-clock]
+Instantiating groups... [0.000s CPU, 0.000s wall-clock]
+Collecting mutex groups... [0.000s CPU, 0.000s wall-clock]
+Choosing groups...
+38 uncovered facts
+Choosing groups: [0.000s CPU, 0.000s wall-clock]
+Building translation key... [0.000s CPU, 0.000s wall-clock]
+Computing fact groups: [0.010s CPU, 0.003s wall-clock]
+Building STRIPS to SAS dictionary... [0.000s CPU, 0.000s wall-clock]
+Building dictionary for full mutex groups... [0.000s CPU, 0.000s wall-clock]
+Building mutex information...
+Building mutex information: [0.000s CPU, 0.000s wall-clock]
+Translating task...
+Processing axioms...
+Simplifying axioms... [0.000s CPU, 0.000s wall-clock]
+Translator axioms removed by simplifying: 0
+Computing negative axioms... [0.000s CPU, 0.000s wall-clock]
+Processing axioms: [0.000s CPU, 0.000s wall-clock]
+Translating task: [0.000s CPU, 0.004s wall-clock]
+144 effect conditions simplified
+0 implied preconditions added
+Detecting unreachable propositions...
+0 operators removed
+0 axioms removed
+10 propositions removed
+Detecting unreachable propositions: [0.000s CPU, 0.002s wall-clock]
+Reordering and filtering variables...
+11 of 48 variables necessary.
+0 of 10 mutex groups necessary.
+54 of 276 operators necessary.
+0 of 0 axiom rules necessary.
+Reordering and filtering variables: [0.000s CPU, 0.001s wall-clock]
+Translator variables: 11
+Translator derived variables: 0
+Translator facts: 36
+Translator goal facts: 1
+Translator mutex groups: 0
+Translator total mutex groups size: 0
+Translator operators: 54
+Translator axioms: 0
+Translator task size: 246
+Translator peak memory: 31940 KB
+Writing output... [0.000s CPU, 0.001s wall-clock]
+Done! [0.020s CPU, 0.026s wall-clock]
+
+INFO     Run task transformation (preprocess-h2).
+INFO     transform-task stdin: /mnt/benchmarks/rovers/tmp/rovers_p47_i3.sas
+INFO     transform-task time limit: None
+INFO     transform-task memory limit: None
+INFO     transform-task command line string: /opt/scorpion/builds/release/bin/preprocess-h2 < /mnt/benchmarks/rovers/tmp/rovers_p47_i3.sas
+Building causal graph...
+The causal graph is not acyclic.
+11 variables of 11 necessary
+0 of 0 mutex groups necessary.
+54 of 54 operators necessary.
+0 of 0 axiom rules necessary.
+Initializing mutex computation...
+Mutex computation initialized with 36 fluents.
+iteration for mutex detection and operator pruning
+Initialize m_index fw
+Initialized mvalues forward: reached=121, notReached=1057, spurious=118
+Initialize m_ops fw
+Computing mutexes...
+Mutex computation finished with reached=1176, notReached=2, spurious=118
+0 operators are spurious because were not triggered
+H^2 mutexes added fw: 2, unreachable: 0
+0 of 54 operators detected as spurious
+iteration for mutex detection and operator pruning
+Initialize m_index bw
+Init values regression
+Initialized mvalues backward: reached=1044, notReached=132, spurious=120
+Initialize m_ops bw
+Computing mutexes...
+Mutex computation finished with reached=1176, notReached=0, spurious=120
+0 operators are spurious because were not triggered
+H^2 mutexes added bw: 0, unreachable: 0
+0 of 54 operators detected as spurious
+Total mutex and disambiguation time: 0.000363 iterations: 2
+Total mutexes found forward: 2
+Total mutexes found backward: 0
+1 of 1 mutex groups necessary.
+54 of 54 operators necessary.
+0 of 0 axiom rules necessary.
+Change id of operators: 54
+Change id of mutexes
+Change id of goals
+Change id of initial state
+Remove unreachable facts from variables: 11
+1 of 1 mutex groups necessary.
+54 of 54 operators necessary.
+0 of 0 axiom rules necessary.
+Updating causal graph and pruning unnecessary facts
+11 variables of 11 of 11 necessary
+The causal graph is not acyclic.
+11 variables of 11 necessary
+1 of 1 mutex groups necessary.
+54 of 54 operators necessary.
+0 of 0 axiom rules necessary.
+Preprocessor variables: 11
+Preprocessor facts: 36
+Preprocessor derived variables: 0
+Preprocessor operators: 54
+Preprocessor mutex groups: 1
+Preprocessor task size: 248
+Writing output...
+done
+translate exit code: 0
+
+INFO     Running search (release).
+INFO     search stdin: /mnt/benchmarks/rovers/tmp/rovers_p47_i3.sas
+INFO     search time limit: 3600s
+INFO     search memory limit: 8192 MB
+INFO     search command line string: /opt/scorpion/builds/release/bin/downward --search 'astar(scp_online([projections(sys_scp(max_time=100, max_time_per_restart=10)), cartesian()], saturator=perimstar, max_time=1000, interval=10K, orders=greedy_orders()),pruning=limited_pruning(pruning=atom_centric_stubborn_sets(), min_required_pruning_ratio=0.2))' --internal-plan-file /mnt/benchmarks/rovers/tmp/rovers_p47_i3.plan < /mnt/benchmarks/rovers/tmp/rovers_p47_i3.sas
+[t=0.002164s, 10796 KB] reading input...
+[t=0.002164s, 10796 KB] done reading input!
+[t=0.003480s, 11192 KB] Compute patterns
+[t=0.003480s, 11192 KB] Generating patterns using: sys-SCP pattern collection generator
+[t=0.003480s, 11192 KB] Generate patterns for size 1
+[t=0.003480s, 11192 KB] building causal graph...done! [t=0.000000s]
+[t=0.003480s, 11192 KB] Found 1 SGA patterns.
+[t=0.003480s, 11192 KB] Found 1 interesting patterns.
+[t=0.003480s, 11192 KB] Store 1 patterns of size 1
+[t=0.003480s, 11192 KB] Finished storing patterns of size 1
+[t=0.003480s, 11192 KB] Add pattern [10]
+[t=0.003480s, 11192 KB] Generate patterns for size 2
+[t=0.003480s, 11192 KB] Found 4 SGA patterns.
+[t=0.003480s, 11192 KB] Found 4 interesting patterns.
+[t=0.003480s, 11192 KB] Store 3 patterns of size 2
+[t=0.003480s, 11192 KB] Finished storing patterns of size 2
+[t=0.003480s, 11192 KB] Add pattern [6, 10]
+[t=0.003480s, 11192 KB] Generate patterns for size 3
+[t=0.003480s, 11192 KB] Found 9 SGA patterns.
+[t=0.003480s, 11192 KB] Found 9 interesting patterns.
+[t=0.003480s, 11192 KB] Store 5 patterns of size 3
+[t=0.003480s, 11192 KB] Finished storing patterns of size 3
+[t=0.003480s, 11192 KB] Add pattern [1, 6, 10]
+[t=0.003480s, 11192 KB] Add pattern [0, 6, 10]
+[t=0.003480s, 11192 KB] Generate patterns for size 4
+[t=0.003480s, 11192 KB] Found 23 SGA patterns.
+[t=0.003480s, 11192 KB] Found 23 interesting patterns.
+[t=0.003480s, 11192 KB] Store 14 patterns of size 4
+[t=0.003480s, 11192 KB] Finished storing patterns of size 4
+[t=0.003480s, 11192 KB] Add pattern [6, 7, 8, 10]
+[t=0.003480s, 11192 KB] Add pattern [0, 1, 6, 10]
+[t=0.003480s, 11192 KB] Generate patterns for size 5
+[t=0.003480s, 11192 KB] Found 61 SGA patterns.
+[t=0.003480s, 11192 KB] Found 61 interesting patterns.
+[t=0.003480s, 11192 KB] Store 38 patterns of size 5
+[t=0.003480s, 11192 KB] Finished storing patterns of size 5
+[t=0.003480s, 11192 KB] Generate patterns for size 6
+[t=0.003480s, 11192 KB] Found 127 SGA patterns.
+[t=0.003480s, 11192 KB] Found 127 interesting patterns.
+[t=0.003480s, 11192 KB] Store 66 patterns of size 6
+[t=0.003480s, 11192 KB] Finished storing patterns of size 6
+[t=0.007480s, 11192 KB] Generate patterns for size 7
+[t=0.007480s, 11192 KB] Found 202 SGA patterns.
+[t=0.007480s, 11192 KB] Found 202 interesting patterns.
+[t=0.007480s, 11192 KB] Store 75 patterns of size 7
+[t=0.007480s, 11192 KB] Finished storing patterns of size 7
+[t=0.023478s, 11324 KB] Generate patterns for size 8
+[t=0.023478s, 11324 KB] Found 259 SGA patterns.
+[t=0.023478s, 11324 KB] Found 259 interesting patterns.
+[t=0.023478s, 11324 KB] Store 57 patterns of size 8
+[t=0.023478s, 11324 KB] Finished storing patterns of size 8
+[t=0.051459s, 11324 KB] Generate patterns for size 9
+[t=0.051459s, 11324 KB] Found 287 SGA patterns.
+[t=0.051459s, 11324 KB] Found 287 interesting patterns.
+[t=0.051459s, 11324 KB] Store 28 patterns of size 9
+[t=0.051459s, 11324 KB] Finished storing patterns of size 9
+[t=0.091447s, 11576 KB] Generate patterns for size 10
+[t=0.091447s, 11576 KB] Found 295 SGA patterns.
+[t=0.091447s, 11576 KB] Found 295 interesting patterns.
+[t=0.091447s, 11576 KB] Store 8 patterns of size 10
+[t=0.091447s, 11576 KB] Finished storing patterns of size 10
+[t=0.123437s, 12008 KB] Generate patterns for size 11
+[t=0.123437s, 12008 KB] Found 296 SGA patterns.
+[t=0.127439s, 12008 KB] Found 296 interesting patterns.
+[t=0.127439s, 12008 KB] Store 1 patterns of size 11
+[t=0.127439s, 12008 KB] Finished storing patterns of size 11
+[t=0.135433s, 12896 KB] Generated all patterns up to size 2147483647.
+[t=0.135433s, 12896 KB] Patterns: 6, collection size: 410
+[t=0.135433s, 12896 KB] Add pattern [1, 10]
+[t=0.135433s, 12896 KB] Add pattern [6, 8, 10]
+[t=0.135433s, 12896 KB] Add pattern [0, 1, 10]
+[t=0.135433s, 12896 KB] Add pattern [1, 6, 8, 10]
+[t=0.135433s, 12896 KB] Add pattern [0, 6, 7, 10]
+[t=0.267407s, 12896 KB] Generated all patterns up to size 2147483647.
+[t=0.267407s, 12896 KB] Patterns: 11, collection size: 702
+[t=0.267407s, 12896 KB] Add pattern [0, 10]
+[t=0.267407s, 12896 KB] Add pattern [6, 7, 10]
+[t=0.267407s, 12896 KB] Add pattern [1, 6, 7, 10]
+[t=0.267407s, 12896 KB] Add pattern [0, 6, 8, 10]
+[t=0.267407s, 12896 KB] Add pattern [6, 7, 8, 9, 10]
+[t=0.267407s, 12896 KB] Add pattern [0, 1, 6, 8, 10]
+[t=0.399380s, 12896 KB] Generated all patterns up to size 2147483647.
+[t=0.399380s, 12896 KB] Patterns: 17, collection size: 1556
+[t=0.399380s, 12896 KB] Add pattern [6, 8, 9, 10]
+[t=0.399380s, 12896 KB] Add pattern [5, 6, 7, 8, 10]
+[t=0.399380s, 12896 KB] Add pattern [1, 6, 8, 9, 10]
+[t=0.399380s, 12896 KB] Add pattern [0, 6, 8, 9, 10]
+[t=0.399380s, 12896 KB] Add pattern [0, 1, 6, 7, 10]
+[t=0.539349s, 12896 KB] Generated all patterns up to size 2147483647.
+[t=0.539349s, 12896 KB] Patterns: 22, collection size: 2756
+[t=0.539349s, 12896 KB] Add pattern [6, 7, 9, 10]
+[t=0.539349s, 12896 KB] Add pattern [4, 6, 7, 8, 10]
+[t=0.539349s, 12896 KB] Add pattern [1, 6, 7, 9, 10]
+[t=0.539349s, 12896 KB] Add pattern [0, 6, 7, 9, 10]
+[t=0.543352s, 12896 KB] Add pattern [0, 1, 6, 8, 9, 10]
+[t=0.675323s, 12896 KB] Generated all patterns up to size 2147483647.
+[t=0.675323s, 12896 KB] Patterns: 27, collection size: 5132
+[t=0.675323s, 12896 KB] Add pattern [5, 6, 8, 10]
+[t=0.675323s, 12896 KB] Add pattern [3, 6, 7, 8, 10]
+[t=0.675323s, 12896 KB] Add pattern [1, 6, 7, 8, 10]
+[t=0.675323s, 12896 KB] Add pattern [0, 6, 7, 8, 10]
+[t=0.679326s, 12896 KB] Add pattern [0, 1, 6, 7, 9, 10]
+[t=0.803294s, 12896 KB] Generated all patterns up to size 2147483647.
+[t=0.803294s, 12896 KB] Patterns: 32, collection size: 7316
+[t=0.803294s, 12896 KB] Add pattern [5, 6, 7, 10]
+[t=0.803294s, 12896 KB] Add pattern [2, 6, 7, 8, 10]
+[t=0.803294s, 12896 KB] Add pattern [1, 5, 6, 8, 10]
+[t=0.803294s, 12896 KB] Add pattern [0, 5, 6, 8, 10]
+[t=0.807291s, 12896 KB] Add pattern [0, 1, 6, 7, 8, 10]
+[t=0.935266s, 12896 KB] Generated all patterns up to size 2147483647.
+[t=0.935266s, 12896 KB] Patterns: 37, collection size: 9080
+[t=0.935266s, 12896 KB] Add pattern [4, 6, 8, 10]
+[t=0.935266s, 12896 KB] Add pattern [1, 5, 6, 7, 10]
+[t=0.935266s, 12896 KB] Add pattern [1, 4, 6, 8, 10]
+[t=0.935266s, 12896 KB] Add pattern [0, 5, 6, 7, 10]
+[t=1.067234s, 12896 KB] Generated all patterns up to size 2147483647.
+[t=1.067234s, 12896 KB] Patterns: 41, collection size: 9872
+[t=1.067234s, 12896 KB] Add pattern [4, 6, 7, 10]
+[t=1.067234s, 12896 KB] Add pattern [1, 4, 6, 7, 10]
+[t=1.067234s, 12896 KB] Add pattern [0, 4, 6, 8, 10]
+[t=1.067234s, 12896 KB] Add pattern [0, 4, 6, 7, 10]
+[t=1.067234s, 12896 KB] Add pattern [1, 6, 7, 8, 9, 10]
+[t=1.195209s, 12896 KB] Generated all patterns up to size 2147483647.
+[t=1.195209s, 12896 KB] Patterns: 46, collection size: 11168
+[t=1.195209s, 12896 KB] Add pattern [3, 6, 7, 10]
+[t=1.195209s, 12896 KB] Add pattern [1, 3, 6, 7, 10]
+[t=1.195209s, 12896 KB] Add pattern [0, 3, 6, 7, 10]
+[t=1.199212s, 12896 KB] Add pattern [1, 5, 6, 8, 9, 10]
+[t=1.327183s, 12896 KB] Generated all patterns up to size 2147483647.
+[t=1.327183s, 12896 KB] Patterns: 50, collection size: 12284
+[t=1.327183s, 12896 KB] Add pattern [2, 6, 7, 10]
+[t=1.327183s, 12896 KB] Add pattern [1, 2, 6, 7, 10]
+[t=1.327183s, 12896 KB] Add pattern [0, 2, 6, 7, 10]
+[t=1.327183s, 12896 KB] Add pattern [1, 5, 6, 7, 8, 10]
+[t=1.459157s, 12896 KB] Generated all patterns up to size 2147483647.
+[t=1.459157s, 12896 KB] Patterns: 54, collection size: 13148
+[t=1.459157s, 12896 KB] Add pattern [5, 6, 8, 9, 10]
+[t=1.459157s, 12896 KB] Add pattern [5, 6, 7, 8, 9, 10]
+[t=1.459157s, 12896 KB] Add pattern [1, 5, 6, 7, 9, 10]
+[t=1.463154s, 12896 KB] Add pattern [0, 6, 7, 8, 9, 10]
+[t=1.463154s, 12896 KB] Add pattern [0, 1, 5, 6, 8, 10]
+[t=1.591130s, 12896 KB] Generated all patterns up to size 2147483647.
+[t=1.591130s, 12896 KB] Patterns: 59, collection size: 16496
+[t=1.591130s, 12896 KB] Add pattern [5, 6, 7, 9, 10]
+[t=1.591130s, 12896 KB] Add pattern [4, 6, 7, 8, 9, 10]
+[t=1.591130s, 12896 KB] Add pattern [1, 4, 6, 8, 9, 10]
+[t=1.591130s, 12896 KB] Add pattern [0, 5, 6, 8, 9, 10]
+[t=1.591130s, 12896 KB] Add pattern [0, 1, 5, 6, 7, 10]
+[t=1.723103s, 12896 KB] Generated all patterns up to size 2147483647.
+[t=1.723103s, 12896 KB] Patterns: 64, collection size: 20096
+[t=1.723103s, 12896 KB] Add pattern [4, 6, 8, 9, 10]
+[t=1.723103s, 12896 KB] Add pattern [4, 5, 6, 7, 8, 10]
+[t=1.723103s, 12896 KB] Add pattern [1, 4, 6, 7, 9, 10]
+[t=1.723103s, 12896 KB] Add pattern [0, 5, 6, 7, 9, 10]
+[t=1.723103s, 12896 KB] Add pattern [0, 1, 4, 6, 8, 10]
+[t=1.855072s, 12920 KB] Generated all patterns up to size 2147483647.
+[t=1.855072s, 12920 KB] Patterns: 69, collection size: 23696
+[t=1.855072s, 12920 KB] Add pattern [4, 6, 7, 9, 10]
+[t=1.855072s, 12920 KB] Add pattern [3, 6, 7, 8, 9, 10]
+[t=1.855072s, 12920 KB] Add pattern [1, 4, 6, 7, 8, 10]
+[t=1.855072s, 12920 KB] Add pattern [0, 5, 6, 7, 8, 10]
+[t=1.855072s, 12920 KB] Add pattern [0, 1, 4, 6, 7, 10]
+[t=1.983047s, 12948 KB] Generated all patterns up to size 2147483647.
+[t=1.983047s, 12948 KB] Patterns: 74, collection size: 26720
+[t=1.983047s, 12948 KB] Add pattern [4, 5, 6, 8, 10]
+[t=1.983047s, 12948 KB] Add pattern [3, 5, 6, 7, 8, 10]
+[t=1.983047s, 12948 KB] Add pattern [1, 4, 5, 6, 8, 10]
+[t=1.983047s, 12948 KB] Add pattern [0, 4, 6, 8, 9, 10]
+[t=1.987050s, 12948 KB] Add pattern [0, 1, 3, 6, 7, 10]
+[t=2.111016s, 12976 KB] Generated all patterns up to size 2147483647.
+[t=2.111016s, 12976 KB] Patterns: 79, collection size: 29660
+[t=2.111016s, 12976 KB] Add pattern [4, 5, 6, 7, 10]
+[t=2.111016s, 12976 KB] Add pattern [3, 4, 6, 7, 8, 10]
+[t=2.111016s, 12976 KB] Add pattern [1, 4, 5, 6, 7, 10]
+[t=2.115013s, 12976 KB] Add pattern [0, 4, 6, 7, 9, 10]
+[t=2.115013s, 12976 KB] Add pattern [0, 1, 2, 6, 7, 10]
+[t=2.242990s, 13008 KB] Generated all patterns up to size 2147483647.
+[t=2.242990s, 13008 KB] Patterns: 84, collection size: 32600
+[t=2.242990s, 13008 KB] Add pattern [3, 6, 7, 9, 10]
+[t=2.242990s, 13008 KB] Add pattern [2, 6, 7, 8, 9, 10]
+[t=2.242990s, 13008 KB] Add pattern [1, 3, 6, 7, 9, 10]
+[t=2.242990s, 13008 KB] Add pattern [0, 4, 6, 7, 8, 10]
+[t=2.250988s, 13008 KB] Add pattern [0, 1, 6, 7, 8, 9, 10]
+[t=2.370959s, 13044 KB] Generated all patterns up to size 2147483647.
+[t=2.370959s, 13044 KB] Patterns: 89, collection size: 37352
+[t=2.370959s, 13044 KB] Add pattern [3, 5, 6, 7, 10]
+[t=2.370959s, 13044 KB] Add pattern [2, 5, 6, 7, 8, 10]
+[t=2.370959s, 13044 KB] Add pattern [1, 3, 6, 7, 8, 10]
+[t=2.370959s, 13044 KB] Add pattern [0, 4, 5, 6, 8, 10]
+[t=2.382954s, 13044 KB] Add pattern [0, 1, 5, 6, 8, 9, 10]
+[t=2.498932s, 13088 KB] Generated all patterns up to size 2147483647.
+[t=2.498932s, 13088 KB] Patterns: 94, collection size: 43952
+[t=2.498932s, 13088 KB] Add pattern [3, 4, 6, 7, 10]
+[t=2.498932s, 13088 KB] Add pattern [2, 4, 6, 7, 8, 10]
+[t=2.498932s, 13088 KB] Add pattern [1, 3, 5, 6, 7, 10]
+[t=2.498932s, 13088 KB] Add pattern [0, 4, 5, 6, 7, 10]
+[t=2.510928s, 13088 KB] Add pattern [0, 1, 5, 6, 7, 9, 10]
+[t=2.626900s, 13128 KB] Generated all patterns up to size 2147483647.
+[t=2.626900s, 13128 KB] Patterns: 99, collection size: 50720
+[t=2.630903s, 13128 KB] Add pattern [2, 6, 7, 9, 10]
+[t=2.630903s, 13128 KB] Add pattern [2, 3, 6, 7, 8, 10]
+[t=2.630903s, 13128 KB] Add pattern [1, 3, 4, 6, 7, 10]
+[t=2.630903s, 13128 KB] Add pattern [0, 3, 6, 7, 9, 10]
+[t=2.638896s, 13128 KB] Add pattern [0, 1, 5, 6, 7, 8, 10]
+[t=2.754872s, 13156 KB] Generated all patterns up to size 2147483647.
+[t=2.754872s, 13156 KB] Patterns: 104, collection size: 55424
+[t=2.754872s, 13156 KB] Add pattern [2, 5, 6, 7, 10]
+[t=2.754872s, 13156 KB] Add pattern [1, 2, 6, 7, 9, 10]
+[t=2.754872s, 13156 KB] Add pattern [1, 2, 6, 7, 8, 10]
+[t=2.754872s, 13156 KB] Add pattern [0, 3, 6, 7, 8, 10]
+[t=2.878845s, 13172 KB] Generated all patterns up to size 2147483647.
+[t=2.878845s, 13172 KB] Patterns: 108, collection size: 56672
+[t=2.878845s, 13172 KB] Add pattern [2, 4, 6, 7, 10]
+[t=2.882848s, 13172 KB] Add pattern [1, 2, 5, 6, 7, 10]
+[t=2.882848s, 13172 KB] Add pattern [0, 3, 5, 6, 7, 10]
+[t=2.882848s, 13172 KB] Add pattern [1, 5, 6, 7, 8, 9, 10]
+[t=3.006814s, 13196 KB] Generated all patterns up to size 2147483647.
+[t=3.006814s, 13196 KB] Patterns: 112, collection size: 59264
+[t=3.006814s, 13196 KB] Add pattern [2, 3, 6, 7, 10]
+[t=3.010815s, 13196 KB] Add pattern [1, 2, 4, 6, 7, 10]
+[t=3.010815s, 13196 KB] Add pattern [0, 3, 4, 6, 7, 10]
+[t=3.010815s, 13196 KB] Add pattern [1, 4, 6, 7, 8, 9, 10]
+[t=3.134789s, 13220 KB] Generated all patterns up to size 2147483647.
+[t=3.134789s, 13220 KB] Patterns: 116, collection size: 61832
+[t=3.134789s, 13220 KB] Add pattern [4, 5, 6, 8, 9, 10]
+[t=3.134789s, 13220 KB] Add pattern [1, 2, 3, 6, 7, 10]
+[t=3.134789s, 13220 KB] Add pattern [0, 2, 6, 7, 9, 10]
+[t=3.134789s, 13220 KB] Add pattern [1, 4, 5, 6, 8, 9, 10]
+[t=3.258763s, 13248 KB] Generated all patterns up to size 2147483647.
+[t=3.258763s, 13248 KB] Patterns: 120, collection size: 65264
+[t=3.258763s, 13248 KB] Add pattern [4, 5, 6, 7, 9, 10]
+[t=3.258763s, 13248 KB] Add pattern [0, 2, 6, 7, 8, 10]
+[t=3.258763s, 13248 KB] Add pattern [1, 4, 5, 6, 7, 9, 10]
+[t=3.266760s, 13248 KB] Add pattern [0, 1, 4, 6, 8, 9, 10]
+[t=3.386730s, 13300 KB] Generated all patterns up to size 2147483647.
+[t=3.386730s, 13300 KB] Patterns: 124, collection size: 73484
+[t=3.386730s, 13300 KB] Add pattern [3, 5, 6, 7, 9, 10]
+[t=3.386730s, 13300 KB] Add pattern [0, 2, 5, 6, 7, 10]
+[t=3.386730s, 13300 KB] Add pattern [1, 4, 5, 6, 7, 8, 10]
+[t=3.394726s, 13300 KB] Add pattern [0, 1, 4, 6, 7, 9, 10]
+[t=3.510700s, 13340 KB] Generated all patterns up to size 2147483647.
+[t=3.510700s, 13340 KB] Patterns: 128, collection size: 81008
+[t=3.510700s, 13340 KB] Add pattern [3, 4, 6, 7, 9, 10]
+[t=3.510700s, 13340 KB] Add pattern [0, 2, 4, 6, 7, 10]
+[t=3.510700s, 13340 KB] Add pattern [1, 3, 6, 7, 8, 9, 10]
+[t=3.518696s, 13340 KB] Add pattern [0, 1, 4, 6, 7, 8, 10]
+[t=3.634671s, 13372 KB] Generated all patterns up to size 2147483647.
+[t=3.634671s, 13372 KB] Patterns: 132, collection size: 86264
+[t=3.634671s, 13372 KB] Add pattern [3, 4, 5, 6, 7, 10]
+[t=3.634671s, 13372 KB] Add pattern [0, 2, 3, 6, 7, 10]
+[t=3.634671s, 13372 KB] Add pattern [1, 3, 5, 6, 7, 9, 10]
+[t=3.634671s, 13372 KB] Add pattern [1, 3, 5, 6, 7, 8, 10]
+[t=3.758648s, 13396 KB] Generated all patterns up to size 2147483647.
+[t=3.758648s, 13396 KB] Patterns: 136, collection size: 89336
+[t=3.758648s, 13396 KB] Add pattern [2, 5, 6, 7, 9, 10]
+[t=3.758648s, 13396 KB] Add pattern [4, 5, 6, 7, 8, 9, 10]
+[t=3.758648s, 13396 KB] Add pattern [1, 3, 4, 6, 7, 9, 10]
+[t=3.758648s, 13396 KB] Add pattern [0, 5, 6, 7, 8, 9, 10]
+[t=3.762651s, 13396 KB] Add pattern [0, 1, 4, 5, 6, 8, 10]
+[t=3.878621s, 13452 KB] Generated all patterns up to size 2147483647.
+[t=3.878621s, 13452 KB] Patterns: 141, collection size: 98516
+[t=3.878621s, 13452 KB] Add pattern [2, 4, 6, 7, 9, 10]
+[t=3.878621s, 13452 KB] Add pattern [3, 5, 6, 7, 8, 9, 10]
+[t=3.882624s, 13452 KB] Add pattern [1, 3, 4, 6, 7, 8, 10]
+[t=3.882624s, 13452 KB] Add pattern [0, 4, 6, 7, 8, 9, 10]
+[t=3.886618s, 13452 KB] Add pattern [0, 1, 4, 5, 6, 7, 10]
+[t=4.002588s, 13496 KB] Generated all patterns up to size 2147483647.
+[t=4.002588s, 13496 KB] Patterns: 146, collection size: 106976
+[t=4.002588s, 13496 KB] Add pattern [2, 4, 5, 6, 7, 10]
+[t=4.002588s, 13496 KB] Add pattern [3, 4, 6, 7, 8, 9, 10]
+[t=4.002588s, 13496 KB] Add pattern [1, 3, 4, 5, 6, 7, 10]
+[t=4.006592s, 13496 KB] Add pattern [0, 4, 5, 6, 8, 9, 10]
+[t=4.006592s, 13496 KB] Add pattern [0, 1, 3, 6, 7, 9, 10]
+[t=4.122542s, 13536 KB] Generated all patterns up to size 2147483647.
+[t=4.122542s, 13536 KB] Patterns: 151, collection size: 114932
+[t=4.122542s, 13536 KB] Add pattern [2, 3, 6, 7, 9, 10]
+[t=4.122542s, 13536 KB] Add pattern [3, 4, 5, 6, 7, 8, 10]
+[t=4.122542s, 13536 KB] Add pattern [1, 2, 6, 7, 8, 9, 10]
+[t=4.126538s, 13536 KB] Add pattern [0, 4, 5, 6, 7, 9, 10]
+[t=4.130540s, 13536 KB] Add pattern [0, 1, 3, 6, 7, 8, 10]
+[t=4.242515s, 13580 KB] Generated all patterns up to size 2147483647.
+[t=4.242515s, 13580 KB] Patterns: 156, collection size: 121136
+[t=4.242515s, 13580 KB] Add pattern [2, 3, 5, 6, 7, 10]
+[t=4.242515s, 13580 KB] Add pattern [2, 5, 6, 7, 8, 9, 10]
+[t=4.242515s, 13580 KB] Add pattern [1, 2, 5, 6, 7, 9, 10]
+[t=4.246518s, 13580 KB] Add pattern [0, 4, 5, 6, 7, 8, 10]
+[t=4.246518s, 13580 KB] Add pattern [0, 1, 3, 5, 6, 7, 10]
+[t=4.362487s, 13620 KB] Generated all patterns up to size 2147483647.
+[t=4.362487s, 13620 KB] Patterns: 161, collection size: 128264
+[t=4.362487s, 13620 KB] Add pattern [2, 3, 4, 6, 7, 10]
+[t=4.362487s, 13620 KB] Add pattern [2, 4, 6, 7, 8, 9, 10]
+[t=4.362487s, 13620 KB] Add pattern [1, 2, 5, 6, 7, 8, 10]
+[t=4.362487s, 13620 KB] Add pattern [0, 3, 6, 7, 8, 9, 10]
+[t=4.366490s, 13620 KB] Add pattern [0, 1, 3, 4, 6, 7, 10]
+[t=4.482466s, 13656 KB] Generated all patterns up to size 2147483647.
+[t=4.482466s, 13656 KB] Patterns: 166, collection size: 134384
+[t=4.482466s, 13656 KB] Add pattern [3, 4, 5, 6, 7, 9, 10]
+[t=4.482466s, 13656 KB] Add pattern [2, 4, 5, 6, 7, 8, 10]
+[t=4.482466s, 13656 KB] Add pattern [1, 2, 4, 6, 7, 9, 10]
+[t=4.482466s, 13656 KB] Add pattern [0, 3, 5, 6, 7, 9, 10]
+[t=4.486464s, 13656 KB] Add pattern [0, 1, 2, 6, 7, 9, 10]
+[t=4.598441s, 13700 KB] Generated all patterns up to size 2147483647.
+[t=4.598441s, 13700 KB] Patterns: 171, collection size: 142016
+[t=4.598441s, 13700 KB] Add pattern [2, 4, 5, 6, 7, 9, 10]
+[t=4.598441s, 13700 KB] Add pattern [2, 3, 6, 7, 8, 9, 10]
+[t=4.598441s, 13700 KB] Add pattern [1, 2, 4, 6, 7, 8, 10]
+[t=4.602438s, 13700 KB] Add pattern [0, 3, 5, 6, 7, 8, 10]
+[t=4.602438s, 13700 KB] Add pattern [0, 1, 2, 6, 7, 8, 10]
+[t=4.718419s, 13740 KB] Generated all patterns up to size 2147483647.
+[t=4.718419s, 13740 KB] Patterns: 176, collection size: 147320
+[t=4.718419s, 13740 KB] Add pattern [2, 3, 5, 6, 7, 9, 10]
+[t=4.718419s, 13740 KB] Add pattern [2, 3, 5, 6, 7, 8, 10]
+[t=4.718419s, 13740 KB] Add pattern [1, 2, 4, 5, 6, 7, 10]
+[t=4.718419s, 13740 KB] Add pattern [0, 3, 4, 6, 7, 9, 10]
+[t=4.722415s, 13740 KB] Add pattern [0, 1, 2, 5, 6, 7, 10]
+[t=4.834391s, 13780 KB] Generated all patterns up to size 2147483647.
+[t=4.834391s, 13780 KB] Patterns: 181, collection size: 154592
+[t=4.834391s, 13780 KB] Add pattern [2, 3, 4, 6, 7, 9, 10]
+[t=4.834391s, 13780 KB] Add pattern [2, 3, 4, 6, 7, 8, 10]
+[t=4.834391s, 13780 KB] Add pattern [1, 2, 3, 6, 7, 9, 10]
+[t=4.834391s, 13780 KB] Add pattern [0, 3, 4, 6, 7, 8, 10]
+[t=4.838394s, 13780 KB] Add pattern [0, 1, 2, 4, 6, 7, 10]
+[t=4.950369s, 13816 KB] Generated all patterns up to size 2147483647.
+[t=4.950369s, 13816 KB] Patterns: 186, collection size: 160856
+[t=4.950369s, 13816 KB] Add pattern [2, 3, 4, 5, 6, 7, 10]
+[t=4.950369s, 13816 KB] Add pattern [1, 2, 3, 6, 7, 8, 10]
+[t=4.950369s, 13816 KB] Add pattern [0, 3, 4, 5, 6, 7, 10]
+[t=4.950369s, 13816 KB] Add pattern [0, 1, 2, 3, 6, 7, 10]
+[t=5.062344s, 13852 KB] Generated all patterns up to size 2147483647.
+[t=5.062344s, 13852 KB] Patterns: 190, collection size: 165824
+[t=5.062344s, 13852 KB] Add pattern [1, 2, 3, 5, 6, 7, 10]
+[t=5.066340s, 13852 KB] Add pattern [0, 2, 6, 7, 8, 9, 10]
+[t=5.078337s, 13852 KB] Add pattern [0, 1, 5, 6, 7, 8, 9, 10]
+[t=5.178318s, 13920 KB] Generated all patterns up to size 2147483647.
+[t=5.178318s, 13920 KB] Patterns: 193, collection size: 178424
+[t=5.178318s, 13920 KB] Add pattern [1, 2, 3, 4, 6, 7, 10]
+[t=5.178318s, 13920 KB] Add pattern [0, 2, 5, 6, 7, 9, 10]
+[t=5.182321s, 13920 KB] Add pattern [1, 4, 5, 6, 7, 8, 9, 10]
+[t=5.294296s, 13944 KB] Generated all patterns up to size 2147483647.
+[t=5.294296s, 13944 KB] Patterns: 196, collection size: 185480
+[t=5.294296s, 13944 KB] Add pattern [0, 2, 5, 6, 7, 8, 10]
+[t=5.294296s, 13944 KB] Add pattern [1, 3, 5, 6, 7, 8, 9, 10]
+[t=5.306289s, 13944 KB] Add pattern [0, 1, 4, 6, 7, 8, 9, 10]
+[t=5.406272s, 14020 KB] Generated all patterns up to size 2147483647.
+[t=5.406272s, 14020 KB] Patterns: 199, collection size: 200096
+[t=5.406272s, 14020 KB] Add pattern [0, 2, 4, 6, 7, 9, 10]
+[t=5.410269s, 14020 KB] Add pattern [1, 3, 4, 6, 7, 8, 9, 10]
+[t=5.418266s, 14020 KB] Add pattern [0, 1, 4, 5, 6, 8, 9, 10]
+[t=5.518252s, 14068 KB] Generated all patterns up to size 2147483647.
+[t=5.518252s, 14068 KB] Patterns: 202, collection size: 220508
+[t=5.518252s, 14068 KB] Add pattern [0, 2, 4, 6, 7, 8, 10]
+[t=5.522248s, 14068 KB] Add pattern [1, 3, 4, 5, 6, 7, 9, 10]
+[t=5.530245s, 14068 KB] Add pattern [0, 1, 4, 5, 6, 7, 9, 10]
+[t=5.630223s, 14140 KB] Generated all patterns up to size 2147483647.
+[t=5.630223s, 14140 KB] Patterns: 205, collection size: 241928
+[t=5.630223s, 14140 KB] Add pattern [0, 2, 4, 5, 6, 7, 10]
+[t=5.630223s, 14140 KB] Add pattern [1, 3, 4, 5, 6, 7, 8, 10]
+[t=5.642218s, 14140 KB] Add pattern [0, 1, 4, 5, 6, 7, 8, 10]
+[t=5.738198s, 14196 KB] Generated all patterns up to size 2147483647.
+[t=5.738198s, 14196 KB] Patterns: 208, collection size: 257048
+[t=5.738198s, 14196 KB] Add pattern [0, 2, 3, 6, 7, 9, 10]
+[t=5.738198s, 14196 KB] Add pattern [1, 2, 5, 6, 7, 8, 9, 10]
+[t=5.750195s, 14196 KB] Add pattern [0, 1, 3, 6, 7, 8, 9, 10]
+[t=5.842177s, 14240 KB] Generated all patterns up to size 2147483647.
+[t=5.846179s, 14240 KB] Patterns: 211, collection size: 268136
+[t=5.846179s, 14240 KB] Add pattern [0, 2, 3, 6, 7, 8, 10]
+[t=5.846179s, 14240 KB] Add pattern [1, 2, 4, 6, 7, 8, 9, 10]
+[t=5.854177s, 14240 KB] Add pattern [0, 1, 3, 5, 6, 7, 9, 10]
+[t=5.950154s, 14312 KB] Generated all patterns up to size 2147483647.
+[t=5.950154s, 14312 KB] Patterns: 214, collection size: 282416
+[t=5.950154s, 14312 KB] Add pattern [0, 2, 3, 5, 6, 7, 10]
+[t=5.950154s, 14312 KB] Add pattern [1, 2, 4, 5, 6, 7, 9, 10]
+[t=5.954157s, 14312 KB] Add pattern [1, 2, 4, 5, 6, 7, 8, 10]
+[t=6.054131s, 14344 KB] Generated all patterns up to size 2147483647.
+[t=6.054131s, 14344 KB] Patterns: 217, collection size: 290984
+[t=6.054131s, 14344 KB] Add pattern [0, 2, 3, 4, 6, 7, 10]
+[t=6.054131s, 14344 KB] Add pattern [1, 2, 3, 6, 7, 8, 9, 10]
+[t=6.062127s, 14344 KB] Add pattern [0, 1, 3, 5, 6, 7, 8, 10]
+[t=6.158112s, 14388 KB] Generated all patterns up to size 2147483647.
+[t=6.158112s, 14388 KB] Patterns: 220, collection size: 301064
+[t=6.158112s, 14388 KB] Add pattern [3, 4, 5, 6, 7, 8, 9, 10]
+[t=6.158112s, 14388 KB] Add pattern [1, 2, 3, 5, 6, 7, 9, 10]
+[t=6.158112s, 14388 KB] Add pattern [0, 4, 5, 6, 7, 8, 9, 10]
+[t=6.166108s, 14388 KB] Add pattern [0, 1, 3, 4, 6, 7, 9, 10]
+[t=6.258089s, 14464 KB] Generated all patterns up to size 2147483647.
+[t=6.258089s, 14464 KB] Patterns: 224, collection size: 320504
+[t=6.258089s, 14464 KB] Add pattern [2, 4, 5, 6, 7, 8, 9, 10]
+[t=6.262093s, 14464 KB] Add pattern [1, 2, 3, 5, 6, 7, 8, 10]
+[t=6.262093s, 14464 KB] Add pattern [0, 3, 5, 6, 7, 8, 9, 10]
+[t=6.266086s, 14464 KB] Add pattern [0, 1, 3, 4, 6, 7, 8, 10]
+[t=6.358067s, 14520 KB] Generated all patterns up to size 2147483647.
+[t=6.358067s, 14520 KB] Patterns: 228, collection size: 333896
+[t=6.358067s, 14520 KB] Add pattern [2, 3, 5, 6, 7, 8, 9, 10]
+[t=6.362071s, 14520 KB] Add pattern [1, 2, 3, 4, 6, 7, 9, 10]
+[t=6.362071s, 14520 KB] Add pattern [0, 3, 4, 6, 7, 8, 9, 10]
+[t=6.366064s, 14520 KB] Add pattern [0, 1, 3, 4, 5, 6, 7, 10]
+[t=6.458046s, 14604 KB] Generated all patterns up to size 2147483647.
+[t=6.458046s, 14604 KB] Patterns: 232, collection size: 351392
+[t=6.458046s, 14604 KB] Add pattern [2, 3, 4, 6, 7, 8, 9, 10]
+[t=6.458046s, 14604 KB] Add pattern [1, 2, 3, 4, 6, 7, 8, 10]
+[t=6.462049s, 14604 KB] Add pattern [0, 3, 4, 5, 6, 7, 9, 10]
+[t=6.466043s, 14604 KB] Add pattern [0, 1, 2, 6, 7, 8, 9, 10]
+[t=6.558026s, 14652 KB] Generated all patterns up to size 2147483647.
+[t=6.558026s, 14652 KB] Patterns: 236, collection size: 365864
+[t=6.558026s, 14652 KB] Add pattern [2, 3, 4, 5, 6, 7, 9, 10]
+[t=6.558026s, 14652 KB] Add pattern [2, 3, 4, 5, 6, 7, 8, 10]
+[t=6.558026s, 14652 KB] Add pattern [1, 2, 3, 4, 5, 6, 7, 10]
+[t=6.558026s, 14652 KB] Add pattern [0, 3, 4, 5, 6, 7, 8, 10]
+[t=6.562022s, 14652 KB] Add pattern [0, 1, 2, 5, 6, 7, 9, 10]
+[t=6.653999s, 14744 KB] Generated all patterns up to size 2147483647.
+[t=6.653999s, 14744 KB] Patterns: 241, collection size: 384656
+[t=6.653999s, 14744 KB] Add pattern [0, 2, 5, 6, 7, 8, 9, 10]
+[t=6.658002s, 14744 KB] Add pattern [0, 1, 2, 5, 6, 7, 8, 10]
+[t=6.745981s, 14776 KB] Generated all patterns up to size 2147483647.
+[t=6.745981s, 14776 KB] Patterns: 243, collection size: 394736
+[t=6.745981s, 14776 KB] Add pattern [0, 2, 4, 6, 7, 8, 9, 10]
+[t=6.749978s, 14776 KB] Add pattern [0, 1, 2, 4, 6, 7, 9, 10]
+[t=6.837957s, 14820 KB] Generated all patterns up to size 2147483647.
+[t=6.837957s, 14820 KB] Patterns: 245, collection size: 408344
+[t=6.837957s, 14820 KB] Add pattern [0, 2, 4, 5, 6, 7, 9, 10]
+[t=6.841960s, 14820 KB] Add pattern [0, 1, 2, 4, 6, 7, 8, 10]
+[t=6.929939s, 14868 KB] Generated all patterns up to size 2147483647.
+[t=6.929939s, 14868 KB] Patterns: 247, collection size: 419936
+[t=6.929939s, 14868 KB] Add pattern [0, 2, 4, 5, 6, 7, 8, 10]
+[t=6.933936s, 14868 KB] Add pattern [0, 1, 2, 4, 5, 6, 7, 10]
+[t=7.017914s, 14920 KB] Generated all patterns up to size 2147483647.
+[t=7.017914s, 14920 KB] Patterns: 249, collection size: 433544
+[t=7.017914s, 14920 KB] Add pattern [0, 2, 3, 6, 7, 8, 9, 10]
+[t=7.021917s, 14920 KB] Add pattern [0, 1, 2, 3, 6, 7, 9, 10]
+[t=7.105895s, 14952 KB] Generated all patterns up to size 2147483647.
+[t=7.105895s, 14952 KB] Patterns: 251, collection size: 442616
+[t=7.105895s, 14952 KB] Add pattern [0, 2, 3, 5, 6, 7, 9, 10]
+[t=7.109892s, 14952 KB] Add pattern [0, 1, 2, 3, 6, 7, 8, 10]
+[t=7.193876s, 14988 KB] Generated all patterns up to size 2147483647.
+[t=7.193876s, 14988 KB] Patterns: 253, collection size: 450344
+[t=7.193876s, 14988 KB] Add pattern [0, 2, 3, 5, 6, 7, 8, 10]
+[t=7.197879s, 14988 KB] Add pattern [0, 1, 2, 3, 5, 6, 7, 10]
+[t=7.281858s, 15028 KB] Generated all patterns up to size 2147483647.
+[t=7.281858s, 15028 KB] Patterns: 255, collection size: 459416
+[t=7.281858s, 15028 KB] Add pattern [0, 2, 3, 4, 6, 7, 9, 10]
+[t=7.281858s, 15028 KB] Add pattern [0, 1, 2, 3, 4, 6, 7, 10]
+[t=7.285855s, 15028 KB] Add pattern [1, 3, 4, 5, 6, 7, 8, 9, 10]
+[t=7.369838s, 15116 KB] Generated all patterns up to size 2147483647.
+[t=7.370222s, 15116 KB] Patterns: 258, collection size: 478568
+[t=7.370222s, 15116 KB] Add pattern [0, 2, 3, 4, 6, 7, 8, 10]
+[t=7.370222s, 15116 KB] Add pattern [1, 2, 4, 5, 6, 7, 8, 9, 10]
+[t=7.385392s, 15116 KB] Add pattern [0, 1, 4, 5, 6, 7, 8, 9, 10]
+[t=7.457373s, 15236 KB] Generated all patterns up to size 2147483647.
+[t=7.457373s, 15236 KB] Patterns: 261, collection size: 521408
+[t=7.457373s, 15236 KB] Add pattern [0, 2, 3, 4, 5, 6, 7, 10]
+[t=7.457373s, 15236 KB] Add pattern [1, 2, 3, 5, 6, 7, 8, 9, 10]
+[t=7.469368s, 15236 KB] Add pattern [0, 1, 3, 5, 6, 7, 8, 9, 10]
+[t=7.541353s, 15348 KB] Generated all patterns up to size 2147483647.
+[t=7.541353s, 15348 KB] Patterns: 264, collection size: 551648
+[t=7.541353s, 15348 KB] Add pattern [2, 3, 4, 5, 6, 7, 8, 9, 10]
+[t=7.541353s, 15348 KB] Add pattern [1, 2, 3, 4, 6, 7, 8, 9, 10]
+[t=7.545356s, 15348 KB] Add pattern [0, 3, 4, 5, 6, 7, 8, 9, 10]
+[t=7.553351s, 15348 KB] Add pattern [0, 1, 3, 4, 6, 7, 8, 9, 10]
+[t=7.621330s, 15476 KB] Generated all patterns up to size 2147483647.
+[t=7.621330s, 15476 KB] Patterns: 268, collection size: 590528
+[t=7.621330s, 15476 KB] Add pattern [1, 2, 3, 4, 5, 6, 7, 9, 10]
+[t=7.621330s, 15476 KB] Add pattern [1, 2, 3, 4, 5, 6, 7, 8, 10]
+[t=7.625333s, 15476 KB] Add pattern [0, 2, 4, 5, 6, 7, 8, 9, 10]
+[t=7.693314s, 15588 KB] Generated all patterns up to size 2147483647.
+[t=7.693314s, 15588 KB] Patterns: 271, collection size: 614720
+[t=7.697311s, 15588 KB] Add pattern [0, 2, 3, 5, 6, 7, 8, 9, 10]
+[t=7.701313s, 15588 KB] Add pattern [0, 1, 3, 4, 5, 6, 7, 9, 10]
+[t=7.769294s, 15676 KB] Generated all patterns up to size 2147483647.
+[t=7.769294s, 15676 KB] Patterns: 273, collection size: 652520
+[t=7.769294s, 15676 KB] Add pattern [0, 2, 3, 4, 6, 7, 8, 9, 10]
+[t=7.773297s, 15676 KB] Add pattern [0, 1, 3, 4, 5, 6, 7, 8, 10]
+[t=7.837279s, 15772 KB] Generated all patterns up to size 2147483647.
+[t=7.837279s, 15772 KB] Patterns: 275, collection size: 679736
+[t=7.837279s, 15772 KB] Add pattern [0, 2, 3, 4, 5, 6, 7, 9, 10]
+[t=7.841276s, 15772 KB] Add pattern [0, 1, 2, 5, 6, 7, 8, 9, 10]
+[t=7.901262s, 15900 KB] Generated all patterns up to size 2147483647.
+[t=7.901262s, 15900 KB] Patterns: 277, collection size: 709976
+[t=7.905264s, 15900 KB] Add pattern [0, 2, 3, 4, 5, 6, 7, 8, 10]
+[t=7.905264s, 15900 KB] Add pattern [0, 1, 2, 4, 6, 7, 8, 9, 10]
+[t=7.965247s, 15996 KB] Generated all patterns up to size 2147483647.
+[t=7.965247s, 15996 KB] Patterns: 279, collection size: 737192
+[t=7.969250s, 15996 KB] Add pattern [0, 1, 2, 4, 5, 6, 7, 9, 10]
+[t=8.025233s, 16092 KB] Generated all patterns up to size 2147483647.
+[t=8.025233s, 16092 KB] Patterns: 280, collection size: 768944
+[t=8.029230s, 16092 KB] Add pattern [0, 1, 2, 4, 5, 6, 7, 8, 10]
+[t=8.081215s, 16156 KB] Generated all patterns up to size 2147483647.
+[t=8.081215s, 16156 KB] Patterns: 281, collection size: 790112
+[t=8.085218s, 16156 KB] Add pattern [0, 1, 2, 3, 6, 7, 8, 9, 10]
+[t=8.137200s, 16220 KB] Generated all patterns up to size 2147483647.
+[t=8.137200s, 16220 KB] Patterns: 282, collection size: 804224
+[t=8.137200s, 16220 KB] Add pattern [0, 1, 2, 3, 5, 6, 7, 9, 10]
+[t=8.189186s, 16284 KB] Generated all patterns up to size 2147483647.
+[t=8.189186s, 16284 KB] Patterns: 283, collection size: 825392
+[t=8.193188s, 16284 KB] Add pattern [0, 1, 2, 3, 5, 6, 7, 8, 10]
+[t=8.241173s, 16316 KB] Generated all patterns up to size 2147483647.
+[t=8.241173s, 16316 KB] Patterns: 284, collection size: 839504
+[t=8.241173s, 16316 KB] Add pattern [0, 1, 2, 3, 4, 6, 7, 9, 10]
+[t=8.289161s, 16380 KB] Generated all patterns up to size 2147483647.
+[t=8.289161s, 16380 KB] Patterns: 285, collection size: 860672
+[t=8.293161s, 16380 KB] Add pattern [0, 1, 2, 3, 4, 6, 7, 8, 10]
+[t=8.337150s, 16412 KB] Generated all patterns up to size 2147483647.
+[t=8.337150s, 16412 KB] Patterns: 286, collection size: 874784
+[t=8.341146s, 16412 KB] Add pattern [0, 1, 2, 3, 4, 5, 6, 7, 10]
+[t=8.385136s, 16492 KB] Generated all patterns up to size 2147483647.
+[t=8.385136s, 16492 KB] Patterns: 287, collection size: 895952
+[t=8.389139s, 16492 KB] Add pattern [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+[t=8.393133s, 16492 KB] Add pattern [0, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+[t=8.401135s, 16492 KB] Add pattern [0, 1, 3, 4, 5, 6, 7, 8, 9, 10]
+[t=8.441124s, 16780 KB] Generated all patterns up to size 2147483647.
+[t=8.441124s, 16780 KB] Patterns: 290, collection size: 995744
+[t=8.449123s, 16780 KB] Add pattern [0, 1, 2, 4, 5, 6, 7, 8, 9, 10]
+[t=8.485115s, 16972 KB] Generated all patterns up to size 2147483647.
+[t=8.485115s, 16972 KB] Patterns: 291, collection size: 1059248
+[t=8.485115s, 16972 KB] Add pattern [0, 1, 2, 3, 5, 6, 7, 8, 9, 10]
+[t=8.517104s, 17100 KB] Generated all patterns up to size 2147483647.
+[t=8.517104s, 17100 KB] Patterns: 292, collection size: 1101584
+[t=8.521107s, 17100 KB] Add pattern [0, 1, 2, 3, 4, 6, 7, 8, 9, 10]
+[t=8.545099s, 17228 KB] Generated all patterns up to size 2147483647.
+[t=8.545099s, 17228 KB] Patterns: 293, collection size: 1143920
+[t=8.549095s, 17228 KB] Add pattern [0, 1, 2, 3, 4, 5, 6, 7, 9, 10]
+[t=8.573089s, 17420 KB] Generated all patterns up to size 2147483647.
+[t=8.573089s, 17420 KB] Patterns: 294, collection size: 1207424
+[t=8.573089s, 17420 KB] Add pattern [0, 1, 2, 3, 4, 5, 6, 7, 8, 10]
+[t=8.593084s, 17548 KB] Generated all patterns up to size 2147483647.
+[t=8.593084s, 17548 KB] Patterns: 295, collection size: 1249760
+[t=8.601083s, 17548 KB] Add pattern [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+[t=8.617074s, 17932 KB] Generated all patterns up to size 2147483647.
+[t=8.617074s, 17932 KB] Patterns: 296, collection size: 1376768
+[t=8.617074s, 17932 KB] Generated all patterns up to size 2147483647.
+[t=8.617074s, 17932 KB] Patterns: 296, collection size: 1376768
+[t=8.617074s, 17932 KB] Restart did not add any pattern.
+[t=8.617074s, 17932 KB] Time for computing ordered systematic patterns: 0.008003s
+[t=8.617074s, 17932 KB] Time for computing ordered systematic projections: 0.431933s
+[t=8.617074s, 17932 KB] Time for evaluating ordered systematic projections: 8.398092s
+[t=8.617074s, 17932 KB] Ordered systematic pattern evaluations: 10079
+[t=8.617074s, 17932 KB] Maximum generated ordered systematic pattern size: 11
+[t=8.617074s, 17932 KB] Selected ordered systematic patterns: 296/296 = 1.000000
+[t=8.617074s, 17932 KB] Systematic dead ends: 0
+[t=8.617074s, 17932 KB] Systematic dead end tree nodes: 1
+[t=8.617074s, 17932 KB] sys-SCP pattern collection generator number of patterns: 296
+[t=8.617074s, 17932 KB] sys-SCP pattern collection generator total PDB size: 1376768
+[t=8.617074s, 17932 KB] sys-SCP pattern collection generator computation time: 8.613594s
+[t=8.617074s, 17932 KB] Number of patterns: 296
+[t=8.617074s, 17932 KB] Maximum pattern size: 11
+[t=8.617074s, 17932 KB] Time for computing patterns: 8.613594s
+[t=8.617074s, 17932 KB] Build projections
+[t=8.617074s, 17932 KB] Time for building projections: 0.000000s
+[t=8.617074s, 17932 KB] Number of projections: 296
+[t=8.617074s, 17932 KB] Number of states in projections: 1376768
+[t=8.617074s, 17932 KB] Build Cartesian abstractions
+
+[t=8.617074s, 529416 KB] Build abstractions for 1 subtasks in infs
+[t=8.617074s, 529416 KB] Subtask has zero-cost operators: false
+[t=8.617074s, 529416 KB] Start building abstraction.
+[t=8.617074s, 529416 KB] Maximum number of states: 2147483647
+[t=8.617074s, 529416 KB] Maximum number of transitions: 1000000
+[t=8.617074s, 529416 KB] Maximum time: infs
+[t=8.617074s, 529416 KB] Abstract solution cost: 1
+[t=8.617074s, 529416 KB] Abstract solution cost: 2
+[t=8.617074s, 529416 KB] Abstract solution cost: 3
+[t=8.617074s, 529416 KB] Found concrete solution.
+[t=8.617074s, 529416 KB] Time for finding abstract traces: 0.000000s
+[t=8.617074s, 529416 KB] Time for finding flaws and computing splits: 0.000000s
+[t=8.617074s, 529416 KB] Time for splitting states: 0.000000s
+[t=8.617074s, 529416 KB] Time for updating goal distances: 0.000000s
+[t=8.617074s, 529416 KB] Number of refinements: 4
+[t=8.617074s, 529416 KB] Done building abstraction.
+[t=8.617074s, 529416 KB] Time for building abstraction: 0.000000s
+[t=8.617074s, 529416 KB] States: 5
+[t=8.617074s, 529416 KB] Goal states: 1
+[t=8.617074s, 529416 KB] Looping transitions: 176
+[t=8.617074s, 529416 KB] Non-looping transitions: 27
+[t=8.617074s, 529416 KB] Nodes in refinement hierarchy: 9
+[t=8.617074s, 529416 KB] Flaw searches: 3
+[t=8.617074s, 529416 KB] Expanded concrete states: 6
+[t=8.617074s, 529416 KB] Maximum expanded concrete states in single flaw search: 4
+[t=8.617074s, 529416 KB] Flaw search time: 0.000000s
+[t=8.617074s, 529416 KB] Time for computing splits: 0.000000s
+[t=8.617074s, 529416 KB] Time for selecting splits: 0.000000s
+[t=8.617074s, 529416 KB] Average number of refinements per flaw search: 1.333333
+[t=8.617074s, 529416 KB] Average number of expanded concrete states per flaw search: 2.000000
+[t=8.617074s, 529416 KB] Average flaw search time: 0.000000
+
+[t=8.617074s, 529416 KB] Build abstractions for 1 subtasks in infs
+[t=8.617074s, 529416 KB] Subtask has zero-cost operators: false
+[t=8.617074s, 529416 KB] Start building abstraction.
+[t=8.617074s, 529416 KB] Maximum number of states: 2147483642
+[t=8.617074s, 529416 KB] Maximum number of transitions: 999973
+[t=8.617074s, 529416 KB] Maximum time: infs
+[t=8.617074s, 529416 KB] Abstract solution cost: 1
+[t=8.617074s, 529416 KB] Abstract solution cost: 2
+[t=8.621078s, 529416 KB] Abstract solution cost: 3
+[t=8.621078s, 529416 KB] Found concrete solution.
+[t=8.621078s, 529416 KB] Time for finding abstract traces: 0.000000s
+[t=8.621078s, 529416 KB] Time for finding flaws and computing splits: 0.000000s
+[t=8.621078s, 529416 KB] Time for splitting states: 0.000000s
+[t=8.621078s, 529416 KB] Time for updating goal distances: 0.000000s
+[t=8.621078s, 529416 KB] Number of refinements: 4
+[t=8.621078s, 529416 KB] Done building abstraction.
+[t=8.621078s, 529416 KB] Time for building abstraction: 0.004004s
+[t=8.621078s, 529416 KB] States: 5
+[t=8.621078s, 529416 KB] Goal states: 1
+[t=8.621078s, 529416 KB] Looping transitions: 176
+[t=8.621078s, 529416 KB] Non-looping transitions: 27
+[t=8.621078s, 529416 KB] Nodes in refinement hierarchy: 9
+[t=8.621078s, 529416 KB] Flaw searches: 3
+[t=8.621078s, 529416 KB] Expanded concrete states: 6
+[t=8.621078s, 529416 KB] Maximum expanded concrete states in single flaw search: 4
+[t=8.621078s, 529416 KB] Flaw search time: 0.000000s
+[t=8.621078s, 529416 KB] Time for computing splits: 0.000000s
+[t=8.621078s, 529416 KB] Time for selecting splits: 0.000000s
+[t=8.621078s, 529416 KB] Average number of refinements per flaw search: 1.333333
+[t=8.621078s, 529416 KB] Average number of expanded concrete states per flaw search: 2.000000
+[t=8.621078s, 529416 KB] Average flaw search time: 0.000000
+
+[t=8.621078s, 529416 KB] Cartesian abstractions: 2
+[t=8.621078s, 529416 KB] Time for building Cartesian abstractions: 0.004004s
+[t=8.621078s, 529416 KB] Total number of Cartesian states: 10
+[t=8.621078s, 529416 KB] Total number of transitions in Cartesian abstractions: 54
+[t=8.621078s, 529416 KB] Abstractions: 298
+[t=8.621078s, 529416 KB] Abstractions per generator: [296, 2]
+[t=8.621078s, 529416 KB] Initialize greedy order generator
+[t=8.785039s, 529416 KB] Time for computing h values and saturated costs: 0.163961s
+[t=8.785039s, 529416 KB] Done computing surplus costs
+[t=8.785039s, 529416 KB] Compute stolen costs
+[t=8.785039s, 529416 KB] Time for initializing greedy order generator: 0.163961s
+[t=8.785039s, 529416 KB] Building successor generator...done!
+[t=8.785039s, 529416 KB] peak memory difference for successor generator creation: 0 KB
+[t=8.785039s, 529416 KB] time for successor generation creation: 0.000000s
+[t=8.785039s, 529416 KB] Variables: 11
+[t=8.785039s, 529416 KB] FactPairs: 36
+[t=8.785039s, 529416 KB] Bytes per state: 4
+[t=8.785039s, 529416 KB] Conducting best first search with reopening closed nodes, (real) bound = 2147483647
+Static greedy unique scores: 11
+Time for computing greedy order: 0.000000s
+[t=9.128972s, 529416 KB] Evaluated states: 1, selected states: 1, stored SCPs: 1, heuristic size: 15 KB, selection time: 0.000000s, diversification time: 0.343934s
+[t=9.128972s, 529416 KB] New best heuristic value for scp_online([projections(sys_scp(max_time=100,max_time_per_restart=10)),cartesian()],saturator=perimstar,max_time=1000,interval=10k,orders=greedy_orders()): 3
+[t=9.128972s, 529416 KB] g=0, 1 evaluated, 0 expanded
+[t=9.128972s, 529416 KB] f = 3, 1 evaluated, 0 expanded
+[t=9.128972s, 529416 KB] Initial heuristic value for scp_online([projections(sys_scp(max_time=100,max_time_per_restart=10)),cartesian()],saturator=perimstar,max_time=1000,interval=10k,orders=greedy_orders()): 3
+[t=9.128972s, 529416 KB] pruning method: atom-centric stubborn sets
+[t=9.128972s, 529416 KB] pruning method: limited
+[t=9.128972s, 529416 KB] New best heuristic value for scp_online([projections(sys_scp(max_time=100,max_time_per_restart=10)),cartesian()],saturator=perimstar,max_time=1000,interval=10k,orders=greedy_orders()): 2
+[t=9.128972s, 529416 KB] g=1, 4 evaluated, 1 expanded
+[t=9.128972s, 529416 KB] New best heuristic value for scp_online([projections(sys_scp(max_time=100,max_time_per_restart=10)),cartesian()],saturator=perimstar,max_time=1000,interval=10k,orders=greedy_orders()): 1
+[t=9.128972s, 529416 KB] g=2, 10 evaluated, 2 expanded
+[t=9.128972s, 529416 KB] New best heuristic value for scp_online([projections(sys_scp(max_time=100,max_time_per_restart=10)),cartesian()],saturator=perimstar,max_time=1000,interval=10k,orders=greedy_orders()): 0
+[t=9.128972s, 529416 KB] g=3, 17 evaluated, 3 expanded
+[t=9.128972s, 529416 KB] Solution found!
+[t=9.128972s, 529416 KB] Actual search time: 0.000000s
+navigate rover2 waypoint4 waypoint6 (1)
+sample_rock rover2 rover2store waypoint6 (1)
+communicate_rock_data rover2 general waypoint6 waypoint6 waypoint2 (1)
+[t=9.128972s, 529416 KB] Plan length: 3 step(s).
+[t=9.128972s, 529416 KB] Plan cost: 3
+[t=9.128972s, 529416 KB] Expanded 4 state(s).
+[t=9.128972s, 529416 KB] Reopened 0 state(s).
+[t=9.128972s, 529416 KB] Evaluated 20 state(s).
+[t=9.128972s, 529416 KB] Evaluations: 20
+[t=9.128972s, 529416 KB] Generated 21 state(s).
+[t=9.128972s, 529416 KB] Dead ends: 0 state(s).
+[t=9.128972s, 529416 KB] Expanded until last jump: 0 state(s).
+[t=9.128972s, 529416 KB] Reopened until last jump: 0 state(s).
+[t=9.128972s, 529416 KB] Evaluated until last jump: 1 state(s).
+[t=9.128972s, 529416 KB] Generated until last jump: 0 state(s).
+[t=9.128972s, 529416 KB] Number of registered states: 20
+[t=9.128972s, 529416 KB] Closed list load factor: 20/31 = 0.645161
+[t=9.128972s, 529416 KB] total successors before pruning: 22
+[t=9.128972s, 529416 KB] total successors after pruning: 21
+[t=9.128972s, 529416 KB] Pruning ratio: 0.045455
+[t=9.128972s, 529416 KB] Search time: 0.343934s
+[t=9.128972s, 529416 KB] Total time: 9.128972s
+Solution found.
+[t=9.128972s, 529416 KB] Evaluated states: 20, selected states: 1, stored SCPs: 1, heuristic size: 15 KB, selection time: 0.000000s, diversification time: 0.343934s
+[t=9.128972s, 529416 KB] Stored lookup tables: 6
+[t=9.128972s, 529416 KB] Stored values: 3923
+[t=9.128972s, 529416 KB] Evaluated states: 20
+[t=9.128972s, 529416 KB] Time for improving heuristic: 0.343934s
+[t=9.128972s, 529416 KB] Estimated heuristic size: 15 KB
+[t=9.128972s, 529416 KB] Computed SCPs: 1
+[t=9.128972s, 529416 KB] Stored SCPs: 1
+Peak memory: 529416 KB
+search exit code: 0
+
+INFO     Planner time: 9.20s
